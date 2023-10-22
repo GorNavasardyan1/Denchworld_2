@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { AllProducts } from '../api'
 import { useNavigate } from 'react-router-dom'
 
-
-
 export default function GetAllProducts() {
     const [allProducts,setAllProducts] = useState([])
     const navigate = useNavigate()
