@@ -1,0 +1,22 @@
+@media (max-width:1130px) {
+    .title{
+        font-size: 24px !important;
+        font-weight: bold;
+    }
+}
+
+@media (max-width:1030px) {
+    .title{
+        font-size: 22px !important;
+    }
+    .desc{
+        font-size: 14px;
+    }
+}
+@media (max-width:500px) {
+    .product{
+        
+        display: inline-flex !important;
+        flex-direction: column-reverse;
+    }
+}
