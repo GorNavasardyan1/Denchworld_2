@@ -6,6 +6,7 @@ import GetProduct from "./pages/GetProduct/GetProduct"
 import Dashboard from "./pages/dashboard/Dashboard";
 import AddProductPage from "./pages/dashboard/AddProductPage";
 import AddCategoryPage from "./pages/dashboard/AddCategoryPage"
+import Buy from "./pages/buy/Buy"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/addproduct" element={<AddProductPage />}/>
         <Route path="/addcategory" element={<AddCategoryPage />}/>
+        <Route path="/buy/:_id" element={<Buy/>}/>
       </Routes>
     </>
   )
