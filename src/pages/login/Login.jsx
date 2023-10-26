@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom'
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-
+import ReCAPTCHA from 'react-google-recaptcha';
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLogined, setLogined] = useState(false);
+    const [validate,setValidate] = useState(false)
     const shouldRedirect = isLogined || localStorage.getItem("jwtToken");
+
+    const checkReCAPTCHA = () => {
+        setValidate(true)
+    }
+
     const handlSend = async (e) => {
         e.preventDefault();
         
@@ -19,7 +25,7 @@ export default function Login() {
                 background: '#001D3D',
                 color: '#fff',
               },})
-            const response = await fetch('http://localhost:5000/auth/login',{
+            const response = await fetch('https://backendv1-git-main-rhayrapetyan157-gmailcom.vercel.app/auth/login',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +71,7 @@ export default function Login() {
                             <h3 className=' font-light text-[14px]'>If you have an account, sign in with your email address.</h3>
                         </div>
                         <div className=' h-[262px]'>
-                            <form onSubmit={handlSend}>
+                            <form onSubmit={validate && handlSend}>
                                 <div className=' h-[88px]'>
                                     <p className=' mb-1 font-bold flex'>Login<p className=' text-[#C94D3F]'>*</p></p>
                                     <input type="text" placeholder='Your Login' 
@@ -76,6 +82,11 @@ export default function Login() {
                                     <input type="password" placeholder='Your Password'
                                     className=' p-4 w-full text-[#A2A6B0] font-light text-[14px]  ' value={password} onChange={(e)=>setPassword(e.target.value)}/>
                                 </div>
+
+                                <ReCAPTCHA
+                                    sitekey="6LcLaswoAAAAAEC6_D56G-guaozfDbrYhnCtlWea"
+                                    onChange={checkReCAPTCHA}
+                                />
                                 <button type='submit' 
                                 className=' text-white font-semibold mt-2 text-[14px] h-[50px] w-full rounded-[40px] bg-[#0156FF]'
                                 >Sign In</button>

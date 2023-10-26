@@ -20,19 +20,20 @@ export default function AddCategory() {
     };
     const createCategory = async (e) => {
         e.preventDefault();
+        toast.loading('Creating category...',{id:'1'})
         const formData = new FormData();
         formData.append('name', name);
         formData.append('image', image);
-        const response = await fetch('http://localhost:5000/post/addcategory', {
+        const response = await fetch('https://backendv1.vercel.app/post/addcategory', {
             method: "POST",
             body: formData
         })
         const data = await response.json();
         if(response.status == 201){
             setIsDeleted(true)
-            toast.success(data.message)
+            toast.success(data.message,{id:'1'})
         } else {
-            toast.error(data.message)
+            toast.error(data.message,{id:'1'})
         }
     }
 
@@ -46,17 +47,19 @@ export default function AddCategory() {
     },[isDeleted])
     //delete category 
     const deleteCategory = async (id) => {
+        toast.loading('Deleting category...',{id:'1'})
         try {
-            const response = await fetch(`http://localhost:5000/post/deletecategory?id=${id}`,{
+            const response = await fetch(`https://backendv1.vercel.app/post/deletecategory?id=${id}`,{
             method: 'DELETE'
             })
             const data = await response.json();
             console.log(data)
             if(response.status == 200){
-                toast.success(data.message)
+                toast.success(data.message,{id:'1'})
                 setIsDeleted(true)
             } 
         } catch (error) {
+            toast.error(error)
             console.log("error")
         }
     }
@@ -90,7 +93,7 @@ export default function AddCategory() {
        <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-slate-400 border-t-2 border-b-2 ">
             {
                 categories.map(el=><div key={el._id} className="text-center flex justify-center items-center flex-col ">
-                    <img src={"http://localhost:5000" + (el.photo).replace("static", '')} alt="" width="100px" height="100px"/>
+                    <img src={el.photo} alt="" width="100px" height="100px"/>
                     <div>
                         <h3 className="my-2">{el.name} </h3>
                         <p className="my-2">Products in category: {(el.products).length}</p>

@@ -28,7 +28,6 @@ export default function GetProduct() {
         setProductRecommend(data.posts)
       })
     },[])
-
     const responsive = {
         superLargeDesktop: {
           breakpoint: { max: 4000, min: 3000 },
@@ -72,9 +71,10 @@ export default function GetProduct() {
             </div>
         </div>
         <div className='imagesBlock m-8'>
+          {console.log(product)}
             <Carousel responsive={responsive} className='images w-[700px] h-[700px]'>
               {
-                product.photos.map(el => <div key={el._id} className='image w-[700px] h-[500px] flex' style={{background:`url('${el.url ? 'http://localhost:5000/' + el.url?.slice(7) : ''}')`,backgroundSize:'cover',backgroundPosition:'center'}}></div>)
+                product.photos.map(el => <div key={el._id} className='image w-[700px] h-[500px] flex' style={{background:`url('${el.url}')`,backgroundSize:'cover',backgroundPosition:'center'}}></div>)
               }
             </Carousel>
         </div>
@@ -85,11 +85,11 @@ export default function GetProduct() {
               {
                 productRecommend.map(el => <a href="" className='m-4' key={el._id}>
                     <div key={el._id} 
-                      className=' flex justify-center items-center flex-col  p-4 cursor-pointer rounded-[10px] duration-300 hover:shadow-lg'
+                      className=' flex justify-center items-center flex-col  p-4 cursor-pointer duration-300 hover:shadow-lg'
                       onClick={() => {
                         localStorage.setItem('productID',el._id)
                         navigate('/electronic/' + el._id)}}>   
-                          <img src={'http://localhost:5000/' + el.photos[0].url.slice(7)} alt="" className='h-[230px] w-[230px]'/>
+                          <img src={el.photos[0].url} alt="" className='h-[230px] w-[230px]'/>
                           <div className='titleCateg font-semibold'>{el.title}</div>
                           <div>{el.price} ֏</div>
                       </div>

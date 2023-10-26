@@ -22,6 +22,7 @@ export default function AddPost() {
       };
      const addPost = async (e) => {
         e.preventDefault()
+        toast.loading('is added...',{id:'1'})
         const data = new FormData();
         image.forEach((file, index) => {
             data.append(`image${index}`, file);
@@ -31,15 +32,15 @@ export default function AddPost() {
         data.append('price', price);
         data.append('categoryID', categoryID);
      try {
-        const response = await fetch("http://localhost:5000/post/addproduct", {
+        const response = await fetch("https://backendv1.vercel.app/post/addproduct", {
             method: "POST",
             body: data
         })
         const data2 = await response.json()
         if (response.status === 201) {
-            toast.success(data2.message)
+            toast.success(data2.message,{id:'1'})
           } else {
-            toast.error(data2.message)
+            toast.error(data2.message,{id:'1'})
           }
 
      } catch (error) {

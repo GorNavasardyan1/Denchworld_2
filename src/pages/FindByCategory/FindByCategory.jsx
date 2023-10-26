@@ -76,11 +76,11 @@ export default function FindByCategory() {
             {
                 filteredProduct.length && 
                 filteredProduct.map(el => <div key={el._id} 
-                className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer rounded-[10px] duration-300 hover:shadow-lg'
+                className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                 onClick={() => {
                     localStorage.setItem('productID',el._id)
                     navigate('/electronic/' + el._id)}}>   
-                    <img src={'http://localhost:5000/' + el.photos[0].url.slice(7)} alt="" className='h-[230px] w-[230px]'/>
+                    <img src={el.photos[0].url} alt="" className='h-[230px] w-[230px]'/>
                     <div className='titleCateg font-semibold'>{el.title}</div>
                     <div>{el.price} ֏</div>
                 </div>) 
@@ -90,9 +90,10 @@ export default function FindByCategory() {
                 onClick={() => {
                     localStorage.setItem('productID',el._id)
                     navigate('/electronic/' + el._id)}}>   
-                    <img src={'http://localhost:5000/' + el.photos[0].url.slice(7)} alt="" className='h-[230px] w-[230px]'/>
+                    <img src={el.photos[0].url} alt="" className='h-[230px] w-[230px]'/>
                     <div className='titleCateg font-semibold'>{el.title}</div>
                     <div>{el.price} ֏</div>
+                    {console.log(el)}
                 </div>)
             }
             </div>

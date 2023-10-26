@@ -10,9 +10,9 @@ export default function FindAllCategories({categories}) {
         <div className=' grid sm:grid-cols-2 lg:grid-cols-4 border-t-2 border-b-2'>
             {
               categories.map(el => <div key={el._id}
-                className='flex justify-center items-center flex-col m-4 p-4 cursor-pointer rounded-[10px] duration-300 hover:shadow-lg'
+                className='flex justify-center items-center flex-col m-4 p-4 cursor-pointer duration-300 hover:shadow-lg'
                 onClick={() => navigate('/category/' + el._id)} >
-                    <img src={'http://localhost:5000/' + el?.photo?.slice(7)} alt="" 
+                    <img src={el.photo} alt="" 
                     className=' h-[250px] w-[300px]'/>
                     <div>{el.name}</div>
                 </div>)

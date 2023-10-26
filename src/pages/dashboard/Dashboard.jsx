@@ -46,14 +46,15 @@ export default function Hashboard() {
 
     //delete product 
     const deleteProduct = async (id) => {
+        toast.loading('Deleting',{id:'1'})
         try {
-            const response = await fetch(`http://localhost:5000/post/deleteproduct?id=${id}`,{
+            const response = await fetch(`https://backendv1.vercel.app/post/deleteproduct?id=${id}`,{
             method: 'DELETE'
             })
             const data = await response.json();
             console.log(data)
             if(response.status == 200){
-                toast.success(data.message)
+                toast.success(data.message,{id:'1'})
                 setIsDeleted(true)
             } 
         } catch (error) {
@@ -83,7 +84,7 @@ export default function Hashboard() {
             {
                     products.map(el=> <tbody key={el._id}>
                         <tr>
-                        <td><img src={'http://localhost:5000/' + el?.photos[0]?.url.slice(7)} width="200px" height="200px"/></td>
+                        <td><img src={'https://backendv1.vercel.app/' + el?.photos[0]?.url.slice(7)} width="200px" height="200px"/></td>
                         <td>{el.title}</td>
                         <td><span><button onClick={()=>deleteProduct(el._id)} className="my-2 text-[14px] font-serif text-white bg-sky-500 rounded-3xl px-8 py-2">Delete</button></span></td>
                         </tr>
