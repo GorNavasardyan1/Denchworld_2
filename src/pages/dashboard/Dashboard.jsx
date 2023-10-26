@@ -9,7 +9,7 @@ import Loading from '../../components/loading/Loading'
 import { useState,useEffect } from "react";
 
 export default function Hashboard() {
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(false)
     //jwt token
     const token = localStorage.getItem("jwtToken");
     let userData;
@@ -25,22 +25,25 @@ export default function Hashboard() {
      //get all category
      const [categories,setCategories] = useState([]);
      const [lastId, setLastId] = useState('');
+     const [selectedCategory, setSelectedCategory] = useState('');
      useEffect(()=>{
          GetAllCategories().then(data => {
             setCategories(data);
             console.log(data)
-             if(!lastId){
+            if (!lastId && data.length > 0) {
                 setLastId(data[0]._id);
-             }
+                setSelectedCategory(data[0]._id);
+            }
          })
      },[])
 
     //get products
     const [products, setProducts] = useState([]);
     useEffect(()=>{
+        setLoading(true)
         GetProductsByCategory(lastId).then((data)=>{
             setProducts(data)
-            setLoading(!loading)
+            setLoading(false)
         })
     },[lastId])
 
@@ -68,7 +71,10 @@ export default function Hashboard() {
            userData?.roles?.[0] === "ADMIN" && <div>
             <AdminNavigation />
             <h2>Token Time: {Math.ceil(tokenTime/60/60) + "H"}</h2>
-            <select name="category" id="category" onChange={(e)=>setLastId(e.target.value)}>
+            <select name="category" id="category" value={selectedCategory} onChange={(e)=>{
+                setLastId(e.target.value)
+                setSelectedCategory(e.target.value);
+                }}>
                 {
                     categories.map(el=><option key={el._id} value={el._id} >{el.name}</option>)
                 }
@@ -84,7 +90,7 @@ export default function Hashboard() {
             {
                     products.map(el=> <tbody key={el._id}>
                         <tr>
-                        <td><img src={'https://backendv1.vercel.app/' + el?.photos[0]?.url.slice(7)} width="200px" height="200px"/></td>
+                        <td><img src={el?.photos[0]?.url} width="200px" height="200px"/></td>
                         <td>{el.title}</td>
                         <td><span><button onClick={()=>deleteProduct(el._id)} className="my-2 text-[14px] font-serif text-white bg-sky-500 rounded-3xl px-8 py-2">Delete</button></span></td>
                         </tr>

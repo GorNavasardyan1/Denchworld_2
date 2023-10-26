@@ -14,7 +14,7 @@ export default function AddPost() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
-    const [categoryID, setCategory] = useState('');
+    const [categoryID, setCategoryID] = useState('');
     const [image, setImage] = useState([]);
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
@@ -52,6 +52,8 @@ export default function AddPost() {
     useEffect(()=>{
         GetAllCategories().then(data => {
             setCategories(data)
+            setCategoryID(data[0]._id)
+                console.log(categoryID)
         })
     },[])
     return <>
@@ -67,7 +69,7 @@ export default function AddPost() {
         <label className="block mt-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white" htmlFor="small_size">Product price</label>
         <input type="number" min={0} value={price} className=" p-2 outline-none border-2" onChange={(e)=>setPrice(e.target.value)}/>
         <label className="block mt-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white" htmlFor="small_size">Choose a category</label>
-        <select name="category" id="category" onChange={(e)=>setCategory(e.target.value)}>
+        <select name="category" id="category" onChange={(e)=>setCategoryID(e.target.value)}>
         {
             categories.map(el=><option key={el._id} value={el._id} >{el.name}</option>)
         }
