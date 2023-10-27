@@ -64,7 +64,7 @@ export default function GetProduct() {
                 <div className=' flex items-end h-full'>
                     <div className='buyBlock flex items-center'>
                       <button onClick={() => navigate('/buy/' + product._id)} className='border-none bg-[#0156FF] text-white h-[50px] w-[151px] rounded-[40px]'>Ավելացնել քարտին</button>
-                      <input type="number" min={1}  placeholder='1' className=' border-2 border-black rounded outline-none w-[60px] ml-2 p-2' onChange={(e) => setCounter(e.target.value)}/>
+                      <input type="number" min={1}  placeholder='1' className='quantityChanger border-2 border-black rounded outline-none w-[60px] ml-2 p-2' onChange={(e) => setCounter(e.target.value)}/>
                       <div className=' ml-2'>{counter > 0 ? counter * product.price + '֏' : product.price + '֏'}</div>
                     </div>
                 </div>

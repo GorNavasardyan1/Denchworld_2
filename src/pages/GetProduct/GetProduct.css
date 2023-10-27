@@ -29,6 +29,7 @@
     .product{ 
         display: inline-flex !important;
         flex-direction: column-reverse;
+        width: 100%;
     }
     .imagesBlock{
         display: flex;
@@ -36,25 +37,12 @@
         align-items: center;    
     }
     .image{
-        width: 600px !important;
-    }
-    .images{
-        width: 600px !important;
-    }
-}
-
-
-@media (max-width:680px) {
-    .product{
-        width: 100%;
+        width: 340px !important;
+        height: 280px !important;
     }
     .images{
         width: 340px !important;
         height: 340px !important;
-    }
-    .image{
-        width: 340px !important;
-        height: 280px !important;
     }
 }
 
@@ -73,5 +61,10 @@
     .buyBlock{
         display: block !important;
         text-align: center;
+        margin-top: 20px;
+    }
+    .quantityChanger{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }

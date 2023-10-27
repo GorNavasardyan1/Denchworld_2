@@ -63,7 +63,7 @@ export default function FindByCategory() {
                     }
                 </div>
             </div>
-        <div className='blok w-[380px]'></div>
+        <div className='blok w-[340px]'></div>
             <div className='menuBtn bg-[#F5F7FF] p-2 fixed w-full flex justify-center items-center'>
                 <div className='menuBar' onClick={() => openMenu(!menu)}>
                     <FontAwesomeIcon icon={faBars} className={menu ? 'border-b-4 border-gray-300 h-[30px]' : 'h-[30px]'}/>
@@ -72,6 +72,7 @@ export default function FindByCategory() {
                     <img src="/iconweb.png" alt="" className='h-[40px]' />
                 </div>
             </div>
+        <div className=' w-full'>
         <div className='products w-full grid sm:grid-cols-2 lg:grid-cols-4 '>
             {
                 filteredProduct.length && 
@@ -97,6 +98,14 @@ export default function FindByCategory() {
                 </div>)
             }
             </div>
+            <div className=' flex items-end justify-center w-full h-full'>
+                <button className=' bg-red-600 p-4 m-2'>1</button>
+                <button className=' bg-red-600 p-4 m-2'>1</button>
+                <button className=' bg-red-600 p-4 m-2'>1</button>
+                <button className=' bg-red-600 p-4 m-2'>1</button>
+                <button className=' bg-red-600 p-4 m-2'>1</button>
+            </div>
+        </div>
         </div>
         </>
         }
