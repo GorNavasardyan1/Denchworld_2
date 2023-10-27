@@ -86,7 +86,7 @@ export default function FindByCategory() {
                 </div>) 
                 ||
                 products.map(el => <div key={el._id} 
-                className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer rounded-[10px] duration-300 hover:shadow-lg'
+                className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                 onClick={() => {
                     localStorage.setItem('productID',el._id)
                     navigate('/electronic/' + el._id)}}>   

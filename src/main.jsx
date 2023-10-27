@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
   <Toaster
-  position="bottom-center"
+  position="top-center"
   reverseOrder={false}
   />
     <App />
