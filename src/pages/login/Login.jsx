@@ -20,6 +20,7 @@ export default function Login() {
     const handlSend = async (e) => {
         e.preventDefault();
         
+        if(validate){
         try {
             toast.loading('Loading...',{id : 1,style: {
                 background: '#001D3D',
@@ -51,6 +52,9 @@ export default function Login() {
         } catch (error) {
             console.log(error)
         }
+    } else {
+        toast.error("Please complete the reCAPTCHA verification to proceed. Click the reCAPTCHA checkbox to confirm that you are not a robot.")
+    }
    }
   return (
     <>
@@ -71,7 +75,7 @@ export default function Login() {
                             <h3 className=' font-light text-[14px]'>If you have an account, sign in with your email address.</h3>
                         </div>
                         <div className=' h-[262px]'>
-                            <form onSubmit={validate && handlSend}>
+                            <form onSubmit={handlSend}>
                                 <div className=' h-[88px]'>
                                     <p className=' mb-1 font-bold flex'>Login<p className=' text-[#C94D3F]'>*</p></p>
                                     <input type="text" placeholder='Your Login' 
@@ -83,10 +87,12 @@ export default function Login() {
                                     className=' p-4 w-full text-[#A2A6B0] font-light text-[14px]  ' value={password} onChange={(e)=>setPassword(e.target.value)}/>
                                 </div>
 
-                                <ReCAPTCHA
+                               <div className='flex justify-center'>
+                               <ReCAPTCHA
                                     sitekey="6LcLaswoAAAAAEC6_D56G-guaozfDbrYhnCtlWea"
                                     onChange={checkReCAPTCHA}
                                 />
+                               </div>
                                 <button type='submit' 
                                 className=' text-white font-semibold mt-2 text-[14px] h-[50px] w-full rounded-[40px] bg-[#0156FF]'
                                 >Sign In</button>
