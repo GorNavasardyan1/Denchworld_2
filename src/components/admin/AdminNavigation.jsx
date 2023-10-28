@@ -22,6 +22,9 @@ export default function AdminNavigation() {
                         <div className="flex items-center">
                             <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
                                 <li>
+                                    <Link to="/dashboard">Home/Delete Product</Link>
+                                </li>
+                                <li>
                                     <Link to="/addproduct" className="text-gray-900 dark:text-white hover:underline">Add Product</Link>
                                 </li>
                                 <li>
