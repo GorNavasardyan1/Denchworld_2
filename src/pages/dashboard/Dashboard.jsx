@@ -43,6 +43,7 @@ export default function Hashboard() {
         setLoading(true)
         GetProductsByCategory(lastId, 0,100).then((data)=>{
             setProducts(data)
+            console.log(data)
             setLoading(false)
         })
     },[lastId])
@@ -68,8 +69,13 @@ export default function Hashboard() {
   userData?.roles?.[0] === "ADMIN" ? (
     <div>
       <AdminNavigation />
-      <h2>Token Time: {Math.ceil(tokenTime / 60 / 60) + "H"}</h2>
+      <div className="flex pl-2">
+        <h2 className="text-2xl text-gray-900 dark:text-white">Token Time: {Math.ceil(tokenTime / 60 / 60) + "H"}</h2>
+      </div>
+      <div className="flex pl-2">
+        <h2 className="text-2xl text-gray-900 dark:text-white">Select category:</h2>
       <select
+        class="block max-w-[200px] p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         name="category"
         id="category"
         value={selectedCategory}
@@ -79,28 +85,31 @@ export default function Hashboard() {
         }}
       >
         {categories.map((el) => (
-          <option key={el._id} value={el._id}>
+          <option className="max-w-[200px]" key={el._id} value={el._id}>
             {el.name}
           </option>
         ))}
       </select>
+      </div>
       <table className="table-auto w-full">
         <thead>
           <tr>
             <th>Image</th>
             <th>Title</th>
+            <th>Price</th>
             <th>Delete</th>
           </tr>
         </thead>
         {products?.products?.length && products?.products.map((el) => (
           <tbody key={el._id}>
             <tr>
-              <td>
-                <img src={el?.photos[0]?.url} width="200px" height="200px" />
+              <td className="text-center">
+                <img className="block m-auto" src={el?.photos[0]?.url} width="200px" height="200px" />
               </td>
-              <td>{el.title}</td>
-              <td>
-                <span>
+              <td className="text-center">{el.title}</td>
+              <td className="text-center">{el.price}</td>
+              <td className="text-center">
+                <span >
                   <button
                     onClick={() => deleteProduct(el._id)}
                     className="my-2 text-[14px] font-serif text-white bg-sky-500 rounded-3xl px-8 py-2"
