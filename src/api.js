@@ -3,8 +3,8 @@ export const GetAllCategories = async() => {
     return req.json()
 }
 
-export const GetProductsByCategory = async(_id) => {
-    const req = await fetch(`https://backendv1.vercel.app/post/getproductsincategory?id=${_id}&skip=${0}&limit=${50}`)
+export const GetProductsByCategory = async(_id,skip,limit) => {
+    const req = await fetch(`https://backendv1.vercel.app/post/getproductsincategory?id=${_id}&skip=${skip}&limit=${limit}`)
     return req.json()
 }
 

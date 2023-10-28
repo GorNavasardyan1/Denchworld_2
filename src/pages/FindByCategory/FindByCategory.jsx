@@ -15,13 +15,15 @@ export default function FindByCategory() {
     const [menu,openMenu] = useState(false)
     const navigate = useNavigate()
     const {_id} = useParams()
+    const [skip, setSkip] = useState(0);
+    const [limit, setLimit] = useState(20);
     useEffect(() => {
-        GetProductsByCategory(_id).then(data => {
+        GetProductsByCategory(_id,skip,limit).then(data => {
             console.log(data);
             setProducts(data)
             setLoading(false)
         })
-    },[])
+    },[skip])
 
     useEffect(() => {
         GetAllCategories().then(data => {
@@ -34,6 +36,7 @@ export default function FindByCategory() {
         const filtered = products.filter(el => el.title.toLowerCase().trim().includes(value.toLowerCase().trim()))
         setFilteredProduct(filtered)
     }
+    
 
   return (
     <>
@@ -86,7 +89,7 @@ export default function FindByCategory() {
                     <div>{el.price} ֏</div>
                 </div>) 
                 ||
-                products.map(el => <div key={el._id} 
+                products?.products.map(el => <div key={el._id} 
                 className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                 onClick={() => {
                     localStorage.setItem('productID',el._id)
@@ -99,11 +102,9 @@ export default function FindByCategory() {
             }
             </div>
             <div className=' flex items-end justify-center w-full h-full'>
-                <button className=' bg-red-600 p-4 m-2'>1</button>
-                <button className=' bg-red-600 p-4 m-2'>1</button>
-                <button className=' bg-red-600 p-4 m-2'>1</button>
-                <button className=' bg-red-600 p-4 m-2'>1</button>
-                <button className=' bg-red-600 p-4 m-2'>1</button>
+                <button onClick={()=>setSkip(0)} className=' bg-red-600 p-4 m-2'>First Page</button>
+                <button onClick={()=>setSkip(skip+1)} className=' bg-red-600 p-4 m-2'>{skip+1}</button>
+                <button onClick={()=>setSkip(products?.totalPages -1)} className=' bg-red-600 p-4 m-2'>Last Page</button>
             </div>
         </div>
         </div>

@@ -10,6 +10,7 @@ import { useState,useEffect } from "react";
 
 export default function Hashboard() {
     const [loading,setLoading] = useState(false)
+    const [isDeleted, setIsDeleted] = useState(false);
     //jwt token
     const token = localStorage.getItem("jwtToken");
     let userData;
@@ -41,12 +42,11 @@ export default function Hashboard() {
     const [products, setProducts] = useState([]);
     useEffect(()=>{
         setLoading(true)
-        GetProductsByCategory(lastId).then((data)=>{
+        GetProductsByCategory(lastId, 0,100).then((data)=>{
             setProducts(data)
             setLoading(false)
         })
     },[lastId])
-
     //delete product 
     const deleteProduct = async (id) => {
         toast.loading('Deleting',{id:'1'})
@@ -55,16 +55,14 @@ export default function Hashboard() {
             method: 'DELETE'
             })
             const data = await response.json();
-            console.log(data)
             if(response.status == 200){
                 toast.success(data.message,{id:'1'})
-                setIsDeleted(true)
+                setIsDeleted(true);
             } 
         } catch (error) {
             console.log("error")
         }
     }
-    
     return <>
     {loading && <Loading/>}
         {!loading &&
@@ -79,7 +77,7 @@ export default function Hashboard() {
                     categories.map(el=><option key={el._id} value={el._id} >{el.name}</option>)
                 }
             </select>
-            <table class="table-auto w-full">
+            <table className="table-auto w-full">
             <thead>
                 <tr>
                 <th>Image</th>
@@ -88,7 +86,7 @@ export default function Hashboard() {
                 </tr>
             </thead>
             {
-                    products.map(el=> <tbody key={el._id}>
+                   (products?.products)?.length && products?.products.map(el=> <tbody key={el._id}>
                         <tr>
                         <td><img src={el?.photos[0]?.url} width="200px" height="200px"/></td>
                         <td>{el.title}</td>
@@ -99,9 +97,9 @@ export default function Hashboard() {
             </table>
            </div>
            || <div className=" flex justify-center items-center h-[100vh]">
-           <p className=" flex items-center text-[40px]">
+           <div className=" flex items-center text-[40px]">
           <p className=" text-[30px] mr-2"> 404 </p>|<p className="ml-2 text-[30px]">Not found</p>
-           </p>
+           </div>
       </div>
 }
     </>
