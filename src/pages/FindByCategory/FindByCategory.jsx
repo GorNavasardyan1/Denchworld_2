@@ -33,11 +33,9 @@ export default function FindByCategory() {
     },[])
 
     const search = (value) => {
-        const filtered = products.filter(el => el.title.toLowerCase().trim().includes(value.toLowerCase().trim()))
+        const filtered = products.products.filter(el => el.title.toLowerCase().trim().includes(value.toLowerCase().trim()))
         setFilteredProduct(filtered)
     }
-    
-
   return (
     <>
         {loading && <Loading/>}
