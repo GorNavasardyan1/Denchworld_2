@@ -2,10 +2,15 @@ import React from 'react'
 import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 
 
-export default function Header() {
+export default function Header({showBasket,setShowBasket,addToBasket}) {
+
+
+
+
   return (
     <div>
         <div className=' w-full bg-black'>
@@ -29,8 +34,14 @@ export default function Header() {
 
 
         <div className='logo h-[92px] w-full  bg-white flex items-center justify-start p-8'>
-            <div className='logo w-full max-w-[1400px] mx-auto '>
+            <div className='logo w-full max-w-[1400px] mx-auto flex justify-between items-center '>
                 <img src="/icon.png" alt="" className=' h-[60px]' />
+                <div onClick={() => setShowBasket(!showBasket)} className=' cursor-pointer'>
+                    <FontAwesomeIcon  icon={faShoppingCart} fade className='h-[30px] w-[30px]'/>
+                    {addToBasket.length > 0 ? <div className=' inline bg-black text-white font-semibold px-1.5 py-0.5 rounded-full'>
+                        {addToBasket.length > 0 ? addToBasket.length : ''}
+                    </div> : ''}
+                </div>
             </div>
         </div>
     </div>
