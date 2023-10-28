@@ -18,7 +18,7 @@ export default function FindByCategory() {
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(20);
     useEffect(() => {
-        GetProductsByCategory(_id,skip,limit).then(data => {
+        GetProductsByCategory(_id,skip,1).then(data => {
             console.log(data);
             setProducts(data)
             setLoading(false)
@@ -103,7 +103,8 @@ export default function FindByCategory() {
             </div>
             <div className=' flex items-end justify-center w-full h-full'>
                 <button onClick={()=>setSkip(0)} className=' bg-red-600 p-4 m-2'>First Page</button>
-                <button onClick={()=>setSkip(skip+1)} className=' bg-red-600 p-4 m-2'>{skip+1}</button>
+                <button onClick={()=>setSkip(0<skip-1?skip-1:skip)} className=' bg-red-600 p-4 m-2'>{0<skip-1?skip-1:skip}</button>
+                <button onClick={()=>setSkip((products?.totalPages)>skip+1?skip+1:skip)} className=' bg-red-600 p-4 m-2'>{(products?.totalPages)>skip+1?skip+1:skip}</button>
                 <button onClick={()=>setSkip(products?.totalPages -1)} className=' bg-red-600 p-4 m-2'>Last Page</button>
             </div>
         </div>
