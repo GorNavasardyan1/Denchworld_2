@@ -18,7 +18,7 @@ export default function FindByCategory() {
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(20);
     useEffect(() => {
-        GetProductsByCategory(_id,skip,1).then(data => {
+        GetProductsByCategory(_id,skip,5).then(data => {
             console.log(data);
             setProducts(data)
             setLoading(false)
@@ -53,7 +53,7 @@ export default function FindByCategory() {
                 <p className=' font-bold text-center text-[16px] mt-4 mb-4'>Search By Model</p>
                 <input type="text" placeholder='Search!' className='rounded-[40px] h-[37px] w-[200px] p-2 outline-none'
                 onChange={(e) => search(e.target.value)} />
-                <div className='inline ml-2'>{filteredProduct.length == products.length || filteredProduct.length == 0 ? '' : filteredProduct.length}</div>
+                <div className='inline ml-2'>{filteredProduct.length == products.products.length || filteredProduct.length == 0 ? '' : filteredProduct.length}</div>
                 </div>
                 <div className=' text-center'>
                     <p className=' font-bold text-[16px] mt-4 mb-4'>All Categories</p>

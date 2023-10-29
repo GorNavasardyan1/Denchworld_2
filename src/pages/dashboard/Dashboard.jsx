@@ -95,7 +95,7 @@ export default function Hashboard() {
       <table className="table-auto w-full">
         
         <thead className="">
-          <tr className=" flex justify-between w-full">
+          <tr className=" flex justify-between w-full border-t-2 border-b-2">
             <th className=" w-[200px]">Image</th>
             <th className=" w-[200px]">Title</th>
             <th className=" w-[200px]">Price</th>
@@ -104,7 +104,7 @@ export default function Hashboard() {
         </thead>
         {products?.products?.length && products?.products.map((el) => (
           <tbody key={el._id} className=" w-full">
-            <div className="w-full ">
+            <div className="w-full border-b-2 mb-2 mt-2 ">
             <tr className=" w-full flex justify-between ">
               <td className="">
                 <img className="" src={el?.photos[0]?.url} width="200px" height="200px" />
