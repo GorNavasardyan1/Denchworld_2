@@ -37,8 +37,8 @@ export default function Header({showBasket,setShowBasket,addToBasket}) {
             <div className='logo w-full max-w-[1400px] mx-auto flex justify-between items-center '>
                 <img src="/icon.png" alt="" className=' h-[60px]' />
                 <div onClick={() => setShowBasket(!showBasket)} className=' cursor-pointer'>
-                    <FontAwesomeIcon  icon={faShoppingCart} fade className='h-[30px] w-[30px]'/>
-                    {addToBasket.length > 0 ? <div className=' inline bg-black text-white font-semibold px-1.5 py-0.5 rounded-full'>
+                    <FontAwesomeIcon  icon={faShoppingCart} fade className='sm:h-[25px] sm:w-[25px]  lg:h-[30px] lg:w-[30px]'/>
+                    {addToBasket.length > 0 ? <div className=' inline lg:bg-black lg:text-white font-semibold lg:px-1.5 lg:py-0.5 rounded-full'>
                         {addToBasket.length > 0 ? addToBasket.length : ''}
                     </div> : ''}
                 </div>
