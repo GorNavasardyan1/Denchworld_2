@@ -68,7 +68,7 @@ export default function Login() {
             <div className='all flex justify-center p-12'>
                 {/* Login --------------------------------------------------------------------- */}
                 <div className='
-                bg-[#F5F7FF] w-[564px] h-[415.26px] flex justify-center items-center flex-col'>
+                bg-[#F5F7FF] w-[564px] h-[485.26px] flex justify-center items-center flex-col'>
                     <div className='board w-[450px]'>
                         <h2 className=' font-bold'>Registered Customers</h2>
                         <div className=' flex items-center h-[70px]'>

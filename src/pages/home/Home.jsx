@@ -68,7 +68,7 @@ export default function Home() {
       {loading && <Loading/>}
       {!loading && <div>
         <Header setShowBasket={setShowBasket} showBasket={showBasket} addToBasket={addToBasket}/>
-        {addToBasket.length == 0 && showBasket ? <p className=' absolute right-2'>Զամբյուղը դատարկ է</p> : showBasket && <Basket addToBasket={addToBasket} remove={remove} plus={plus} minus={minus}/>}
+        {addToBasket.length == 0 && showBasket ? <p className=' fixed right-2 z-[1000]'>Զամբյուղը դատարկ է</p> : showBasket && <Basket addToBasket={addToBasket} remove={remove} plus={plus} minus={minus}/>}
         <Carousel/>
         <FindAllCategories categories={categories}/>
         <GetAllProducts add={add}/>

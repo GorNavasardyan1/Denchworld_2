@@ -4,7 +4,7 @@ import { FaTrash } from 'react-icons/fa'
 
 export default function Basket({addToBasket,remove,plus,minus}) {
   return (
-    <div className=' bg-[#001D3D] p-4 absolute top-[20vh] right-0 z-[1000] rounded-[10px]' >
+    <div className=' bg-[#001D3D] p-4 fixed top-[20vh] right-0 z-[1000] rounded-[10px]' >
         {
         addToBasket.map(el => <div key={el._id} className=' text-xl text-white'>
                 <div className=' flex justify-between items-center mt-2 '>
