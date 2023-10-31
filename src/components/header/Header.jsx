@@ -47,8 +47,8 @@ export default function Header({showBasket,setShowBasket,addToBasket}) {
                 </div>
             </div>
 
-            <div className={isDarkMode ? 'dark-mode logo h-[70px] w-full flex items-center justify-start p-8' 
-             : ' logo h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8'}>
+            <div className={isDarkMode ? 'dark-mode logo duration-300 ease-linear logo h-[70px] w-full flex items-center justify-start p-8' 
+             : ' logo duration-500 h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8'}>
                 <div className='logo w-full max-w-[1400px] mx-auto flex justify-between items-center '>
                     <img src="/icon.png" alt="" className=' h-[40px]' />
                     <div className=' flex'>
