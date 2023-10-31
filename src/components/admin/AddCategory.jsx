@@ -63,6 +63,8 @@ export default function AddCategory() {
             console.log("error")
         }
     }
+
+
     return <>
     {  userData?.roles?.[0] === "ADMIN" && <div>
             <AdminNavigation />
@@ -90,14 +92,15 @@ export default function AddCategory() {
             <input className=" cursor-pointer text-[14px] text-white bg-sky-500 rounded-3xl px-8 py-2" type="submit" value="Add Category" />
             </div>
         </form>
-       <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-slate-400 border-t-2 border-b-2 ">
+       <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-slate-400 border-t-2 border-b-2 py-6">
             {
-                categories.map(el=><div key={el._id} className="text-center flex justify-center items-center flex-col ">
-                    <img src={el.photo} alt="" width="100px" height="100px"/>
+                categories.length && categories.map(el=><div key={el._id} className="text-center flex justify-center items-center flex-col border-slate-400 border-2 ml-4">
+                    <img src={el.photo} alt="" width="100px" height="100px" className="my-2"/>
                     <div>
-                        <h3 className="my-2">{el.name} </h3>
-                        <p className="my-2">Products in category: {(el.products).length}</p>
-                        <button  onClick={()=>deleteCategory(el._id)} className="my-2 text-[14px] text-white bg-sky-500 rounded-3xl px-8 py-2">Delete</button>
+                        <h3 className="my-2 text-xl font-bold">{el.name} </h3>
+                        <p className="my-2 text-base font-mono">Products in category: {(el.products).length}</p>
+                        <button className="my-2 text-[14px] text-white bg-sky-500 rounded-3xl px-6 py-2 mx-1">Update</button>
+                        <button  onClick={()=>deleteCategory(el._id)} className="my-2 text-[14px] text-white bg-red-600 rounded-3xl px-6 py-2 mx-1">Delete</button>
                         </div>
                 </div>)
             }
