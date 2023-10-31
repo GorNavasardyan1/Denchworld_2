@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faMoon, faShoppingCart, faSunPlantWilt } from '@fortawesome/free-solid-svg-icons'
 
 
 
 export default function Header({showBasket,setShowBasket,addToBasket}) {
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-
-
+    useEffect(() => {
+      const body = document.body;
+      if (localStorage.getItem('moon') === 'true') {
+        setIsDarkMode(true);
+        body.classList.add('dark-mode');
+      }
+    }, []);
+  
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        const body = document.body;
+        if (isDarkMode) body.classList.remove('dark-mode');
+        else body.classList.add('dark-mode');
+        localStorage.setItem('moon', !isDarkMode);
+    };
 
     return (
     <>
@@ -33,14 +47,21 @@ export default function Header({showBasket,setShowBasket,addToBasket}) {
                 </div>
             </div>
 
-            <div className='logo h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8'>
+            <div className={isDarkMode ? 'dark-mode logo h-[70px] w-full flex items-center justify-start p-8' 
+             : ' logo h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8'}>
                 <div className='logo w-full max-w-[1400px] mx-auto flex justify-between items-center '>
                     <img src="/icon.png" alt="" className=' h-[40px]' />
+                    <div className=' flex'>
                     <div onClick={() => setShowBasket(!showBasket)} className=' cursor-pointer'>
-                        <FontAwesomeIcon  icon={faShoppingCart} fade className='sm:h-[25px] sm:w-[25px]  lg:h-[30px] lg:w-[30px]'/>
+                        <FontAwesomeIcon  icon={faShoppingCart} fade className={isDarkMode ? 'text-white sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]'
+                         : 'sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]'}/>
                         {addToBasket.length > 0 ? <div className=' inline lg:bg-black lg:text-white font-semibold lg:px-1.5 lg:py-0.5 rounded-full'>
                             {addToBasket.length > 0 ? addToBasket.length : ''}
                         </div> : ''}
+                    </div>
+                    <div onClick={toggleDarkMode} className={isDarkMode ? 'text-white ml-2 cursor-pointer' : 'ml-2 cursor-pointer'}>
+                        {isDarkMode ? <FontAwesomeIcon icon={faMoon} className=' h-[25px] w-[25px]'/> : <FontAwesomeIcon icon={faSunPlantWilt} className=' h-[25px] w-[25px]'/>}
+                    </div>
                     </div>
                 </div>
             </div>

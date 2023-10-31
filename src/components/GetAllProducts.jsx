@@ -28,7 +28,7 @@ export default function GetAllProducts({add}) {
                             <div>{el.price} ֏</div>
                             </div>
                             <div className=' m-2 w-full flex justify-center' >
-                            <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-white border-2 duration-300 z-50 w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
+                            <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300 z-50 w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
                             </div>
                     </div>)
                 }
