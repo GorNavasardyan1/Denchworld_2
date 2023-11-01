@@ -95,7 +95,7 @@ export default function AddCategory() {
         </form>
        <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-slate-400 border-t-2 border-b-2 py-6">
             {
-                categories.length && categories.map(el=><div key={el._id} className="text-center flex justify-center items-center flex-col border-slate-400 border-2 ml-4">
+                categories.length && categories.map(el=><div key={el._id} className="text-center flex justify-center items-center flex-col border-slate-400 border-2 ml-4 my-2">
                     <img src={el.photo} alt="" width="100px" height="100px" className="my-2"/>
                     <div>
                         <h3 className="my-2 text-xl font-bold">{el.name} </h3>
