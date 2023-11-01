@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { GetAllCategories } from '../../api';
+import NotFound from "../notFound/NotFound";
 export default function AddCategory() {
     const token = localStorage.getItem("jwtToken");
     let userData;
@@ -106,11 +107,7 @@ export default function AddCategory() {
             }
        </div>
            </div>
-           || <div className=" flex justify-center items-center h-[100vh]">
-           <p className=" flex items-center text-[40px]">
-          <p className=" text-[30px] mr-2"> 404 </p>|<p className="ml-2 text-[30px]">Not found</p>
-           </p>
-      </div>
+           || <NotFound/>
     }
     </>
 }

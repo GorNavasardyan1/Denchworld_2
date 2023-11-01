@@ -7,6 +7,7 @@ import Loading from '../../components/loading/Loading'
 //components
 
 import { useState,useEffect } from "react";
+import NotFound from "../../components/notFound/NotFound";
 
 export default function Hashboard() {
     const [loading,setLoading] = useState(false)
@@ -128,12 +129,7 @@ export default function Hashboard() {
       </table>
     </div>
   ) : (
-    <div className="flex justify-center items-center h-[100vh]">
-      <div className="flex items-center text-[40px]">
-        <p className="text-[30px] mr-2">404</p>|
-        <p className="ml-2 text-[30px]">Not found</p>
-      </div>
-    </div>
+    <NotFound/>
   )
 )}
     </>
