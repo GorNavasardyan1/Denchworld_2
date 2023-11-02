@@ -110,17 +110,17 @@ export default function Hashboard() {
               <td className="">
                 <img className="" src={el?.photos[0]?.url} width="200px" height="200px" />
               </td>
-              <td className="w-[200px] text-center">{el.title}</td>
-              <td className="w-[200px] text-center">{el.price}</td>
+              <td className="w-[200px] text-center text-xl font-bold">{el.title}</td>
+              <td className="w-[200px] text-center text-base font-mono">{el.price}</td>
               <td className="w-[200px] text-center">
-                <span>
+                <div>
                   <button
                     onClick={() => deleteProduct(el._id)}
-                    className=" text-[14px] font-serif text-white bg-sky-500 rounded-3xl px-8 py-2"
+                    className=" text-[14px] font-serif text-white bg-red-600 rounded-3xl px-8 py-2"
                     >
                     Delete
                   </button>
-                </span>
+                  </div>
               </td>
             </tr>
             </div>
