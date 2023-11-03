@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { GetAllCategories } from '../../api';
 import NotFound from "../../components/notFound/NotFound";
-import Modal from "../../components/admin/Modal/Modal";
+import Modal from "../../components/admin/Modal/ModalCategory/Modal";
 
 export default function AddCategoryPage() {
     //modal isWindow

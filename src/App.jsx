@@ -3,7 +3,7 @@ import Home from "./pages/home/Home"
 import Login from "./pages/login/Login"
 import FindByCategory from "./pages/FindByCategory/FindByCategory"
 import GetProduct from "./pages/GetProduct/GetProduct"
-import Dashboard from "./pages/dashboard/Dashboard";
+import Dashboard from "./pages/dashboard/DashboardPage";
 import AddProductPage from "./pages/dashboard/AddProductPage";
 import AddCategoryPage from "./pages/dashboard/AddCategoryPage"
 import Buy from "./pages/buy/Buy"
