@@ -38,6 +38,7 @@ export default function AddCategoryPage() {
         if(response.status == 201){
             setIsDeleted(true);
             setName('');
+            setImage(null);
             toast.success(data.message,{id:'1'})
         } else {
             toast.error(data.message,{id:'1'})
@@ -82,7 +83,7 @@ export default function AddCategoryPage() {
     }
 
     const updateHandler = async (id) => {
-        toast.loading('Creating category...',{id:'1'});
+        toast.loading('Updating category...',{id:'1'});
         const formData = new FormData();
         formData.append("categoryId", id)
         if(updateName) {
