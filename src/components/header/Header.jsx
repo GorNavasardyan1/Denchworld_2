@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
 import { faMoon, faShoppingCart, faSunPlantWilt } from '@fortawesome/free-solid-svg-icons'
+import { Context } from '../../App'
 
 
-
-export default function Header({showBasket,setShowBasket,addToBasket}) {
+export default function Header() {
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const {showBasket,setShowBasket, addToBasket} = useContext(Context)
 
     useEffect(() => {
       const body = document.body;

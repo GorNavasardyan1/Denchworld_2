@@ -7,10 +7,54 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AddProductPage from "./pages/dashboard/AddProductPage";
 import AddCategoryPage from "./pages/dashboard/AddCategoryPage"
 import Buy from "./pages/buy/Buy"
+import React, { useState } from "react"
+
+export const Context = React.createContext();
 
 function App() {
+  const [addToBasket,setAddToBasket] = useState([])
+  const [showBasket,setShowBasket] = useState(false)
+
+  const add = (product) => {
+    const index = addToBasket.findIndex(el => el._id == product._id)
+    if(index == -1) {
+      const newProduct = {
+        ...product,
+        quantity: 1
+      }
+      setAddToBasket([...addToBasket,newProduct])
+    } else {
+      const newProduct = addToBasket.map(el => {
+        if(el._id === product._id) el.quantity = el.quantity + 1
+        return el
+      })
+      setAddToBasket(newProduct)
+    }
+  }
+  const plus = (id) => {
+    const newProduct = addToBasket.map(el => {
+      if(el._id === id) el.quantity++
+      return el
+    })
+    setAddToBasket(newProduct)
+  }
+  const minus = (id) => {
+    const newProduct = addToBasket.map(el => {
+      if(el._id === id) el.quantity = el.quantity > 1 ? el.quantity -1 : 1
+      return el
+    })
+    setAddToBasket(newProduct)
+  }
+  const remove = (product) => {
+    const newProduct = addToBasket.filter(el => el._id !== product._id)
+    setAddToBasket(newProduct)
+  }
+  const contextValue = {
+    addToBasket,setAddToBasket,showBasket,setShowBasket,add,plus,minus,remove
+  };
   return (
     <>
+    <Context.Provider value={contextValue}>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
@@ -21,6 +65,7 @@ function App() {
         <Route path="/addcategory" element={<AddCategoryPage />}/>
         <Route path="/buy/:_id" element={<Buy/>}/>
       </Routes>
+    </Context.Provider>
     </>
   )
 }

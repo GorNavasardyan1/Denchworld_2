@@ -11,7 +11,6 @@ export default function GetAllProducts({add}) {
             setAllProducts(data.posts)
         })
     },[])
-
   return (
     <>
         <div className=' container mx-auto'>
