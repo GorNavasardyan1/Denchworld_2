@@ -1,6 +1,6 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import { Navigate  } from 'react-router-dom';
-import { Toaster,toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
