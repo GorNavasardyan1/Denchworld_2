@@ -72,10 +72,50 @@ export default function Hashboard() {
   };
 
   const [oneCategory, setOneCategory] = useState({});
-
+  const [countImgae, setCountImage] = useState(0);
   const modal = (oneCategory) => {
     setActive(true);
     setOneCategory(oneCategory);
+    setCountImage(0);
+  };
+
+  const nextImage = (count, len) => {
+    if (len - 1 > countImgae) {
+      setCountImage(countImgae + count);
+    }
+  };
+
+  const lastImage = (count) => {
+    if (countImgae > 0) {
+      setCountImage(countImgae - count);
+    }
+  };
+
+  const deletePhoto = async (productId, url) => {
+    try {
+      toast.loading("Deleting Photo", { id: "1" });
+      const response = await fetch(
+        "https://backendv1.vercel.app/post/deletephotoinproduct",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productId,
+            url,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (response.status === 200) {
+        toast.success(data.message, { id: "1" });
+      } else {
+        toast.error(data.message, { id: "1" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -99,7 +139,15 @@ export default function Hashboard() {
       ) : (
         <NotFound />
       )}
-      <Modal active={active} setActive={setActive} oneCategory={oneCategory}/>
+      <Modal
+        active={active}
+        setActive={setActive}
+        oneCategory={oneCategory}
+        nextImage={nextImage}
+        lastImage={lastImage}
+        countImgae={countImgae}
+        deletePhoto={deletePhoto}
+      />
     </>
   );
 }

@@ -50,42 +50,38 @@ export default function Dashboard({
         {products?.products?.length &&
           products?.products.map((el) => (
             <tbody key={el._id} className=" w-full">
-              <div className="w-full border-b-2 mb-2 mt-2 ">
-                <tr className=" w-full flex justify-between ">
-                  <td className="">
-                    <img
-                      className=""
-                      src={el?.photos[0]?.url}
-                      width="200px"
-                      height="200px"
-                    />
-                  </td>
-                  <td className="w-[200px] text-center text-xl font-bold">
-                    {el.title}
-                  </td>
-                  <td className="w-[200px] text-center text-base font-mono">
-                    {el.price}
-                  </td>
-                  <td className="w-[200px] text-center text-base font-mono">
-                    <button
-                      onClick={() => modal(el)}
-                      className="my-2 text-[14px] text-white bg-sky-500 rounded-3xl px-6 py-2 mx-1"
-                    >
-                      Update
-                    </button>
-                  </td>
-                  <td className="w-[200px] text-center">
-                    <div>
-                      <button
-                        onClick={() => deleteProduct(el._id)}
-                        className=" text-[14px] font-serif text-white bg-red-600 rounded-3xl px-8 py-2"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </div>
+              <tr className=" w-full flex justify-between ">
+                <td className="">
+                  <img
+                    className=""
+                    src={el?.photos[0]?.url}
+                    width="200px"
+                    height="200px"
+                  />
+                </td>
+                <td className="w-[200px] text-center text-xl font-bold">
+                  {el.title}
+                </td>
+                <td className="w-[200px] text-center text-base font-mono">
+                  {el.price}
+                </td>
+                <td className="w-[200px] text-center text-base font-mono">
+                  <button
+                    onClick={() => modal(el)}
+                    className="my-2 text-[14px] text-white bg-sky-500 rounded-3xl px-6 py-2 mx-1"
+                  >
+                    Update
+                  </button>
+                </td>
+                <td className="w-[200px] text-center">
+                  <button
+                    onClick={() => deleteProduct(el._id)}
+                    className=" text-[14px] font-serif text-white bg-red-600 rounded-3xl px-8 py-2"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
             </tbody>
           ))}
       </table>
