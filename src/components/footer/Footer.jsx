@@ -60,8 +60,8 @@ export default function Footer() {
                     <form action="" className='m-8' onSubmit={submitHandler}>
                         <h1 className=' text-white text-2xl mb-4'>Արագ կապ</h1>
                         <p className='fAllFonts text-white text-[16px] font-semibold mb-4'>Ուղարկեք ձեր էլ. հասցեն կամ <br /> հեռախոսահամարը</p>
-                        <div className='fInputBlock flex border-2 rounded-lg overflow-hidden'>
-                            <input type="text" className=' p-2 outline-none w-[280px]  text-black'/>
+                        <div className='fInputBlock flex rounded-lg overflow-hidden'>
+                            <input type="text" className=' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-black'/>
                             <input type="submit" value="Ուղարկել!" className=' text-white bg-[#232529] px-2 py-2 rounded-tr-lg rounded-br-lg cursor-pointer' />
                         </div>
                     </form>

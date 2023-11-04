@@ -46,8 +46,8 @@ export default function FindByCategory() {
         <Header/>
         {showBasket && <Basket/>}
         <div className='flex'>
-            <div className={menu ? 'active w-[260px] bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col ' 
-            : 'leftBlok w-[260px] bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col'}>
+            <div className={menu ? 'text-black active w-[260px] bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col ' 
+            : 'leftBlok w-[260px] text-black bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col'}>
                 <div className=' mt-2'>
                     <button onClick={() => navigate('/')} ><FontAwesomeIcon icon={faHome}/> Home</button>
                     <button onClick={() => navigate(-1)}><FontAwesomeIcon icon={faAngleLeft} fade className='ml-1 mr-1'/>Back</button>
