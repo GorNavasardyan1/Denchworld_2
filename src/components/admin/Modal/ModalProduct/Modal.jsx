@@ -33,9 +33,15 @@ export default function Modal({
             >
               Last
             </button>
-            <button 
-            onClick={()=> deletePhoto(oneCategory._id,oneCategory?.photos?.[countImgae]?.url)}
-            className="my-2 text-[14px] text-white bg-red-600 px-6 py-2 mx-1">
+            <button
+              onClick={() =>
+                deletePhoto(
+                  oneCategory._id,
+                  oneCategory?.photos?.[countImgae]?.url
+                )
+              }
+              className="my-2 text-[14px] text-white bg-red-600 px-6 py-2 mx-1"
+            >
               Delete Photo
             </button>
             <button
