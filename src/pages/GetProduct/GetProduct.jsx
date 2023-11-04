@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faHome } from '@fortawesome/free-solid-svg-icons'
 import Loading from '../../components/loading/Loading'
 import './GetProduct.css'
+import Footer from '../../components/footer/Footer'
 
 
 export default function GetProduct() {
@@ -52,7 +53,7 @@ export default function GetProduct() {
   return (
     <>
     {loading && <Loading/>}
-    {!loading &&  <div className='product grid grid-cols-2 2xl:container 2xl:mx-auto'>
+    {!loading &&  <div><div className='product grid grid-cols-2 2xl:container 2xl:mx-auto'>
         <div className='info bg-[#F5F7FF]'>
             <div className='info h-full w-full flex flex-col p-20'>
               <div className=' mb-8'>
@@ -71,14 +72,13 @@ export default function GetProduct() {
             </div>
         </div>
         <div className='imagesBlock m-8'>
-          {console.log(product)}
             <Carousel responsive={responsive} className='images w-[700px] h-[700px]'>
               {
                 product.photos.map(el => <div key={el._id} className='image w-[700px] h-[500px] flex' style={{background:`url('${el.url}')`,backgroundSize:'cover',backgroundPosition:'center'}}></div>)
               }
             </Carousel>
         </div>
-    </div>} 
+    </div>
       <div className='2xl:container 2xl:mx-auto w-full'>
             <p className=' text-center  text-2xl font-semibold mt-2'>Այլ ապրանքներ</p>
               <div className=' grid sm:grid-cols-2 lg:grid-cols-4'>
@@ -97,6 +97,8 @@ export default function GetProduct() {
               }
               </div>
       </div>
+      <Footer/>
+      </div>}
   </>
   )
 }

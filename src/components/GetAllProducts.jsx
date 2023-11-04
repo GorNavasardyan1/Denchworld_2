@@ -13,7 +13,7 @@ export default function GetAllProducts({add}) {
     },[])
   return (
     <>
-        <div className=' container mx-auto'>
+        <div className=' container mx-auto mb-20'>
             <h1 className=' text-center font-semibold text-[26px]'>Լավագույն ապրանքներ</h1>
             <div className=' grid sm:grid-cols-2 lg:grid-cols-4'>
                 {

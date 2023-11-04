@@ -8,6 +8,8 @@ import './FindByCategory.css'
 import Basket from '../../components/basket/Basket'
 import { Context } from '../../App'
 import Header from '../../components/header/Header'
+import Footer from '../../components/footer/Footer'
+import '../../components/footer/Footer.css'
 export default function FindByCategory() {
     const [products,setProducts] = useState([])
     const [filteredProduct,setFilteredProduct] = useState([])
@@ -65,7 +67,7 @@ export default function FindByCategory() {
                     }
                 </div>
             </div>
-            <div className='blok w-[340px]'></div>
+            <div className='blok w-[320px]'></div>
             <div className='menuBtn bg-[#F5F7FF] p-2 fixed w-full flex justify-center items-center'>
                 <div className='menuBar' onClick={() => openMenu(!menu)}>
                     <FontAwesomeIcon icon={faBars} className={menu ? 'border-b-4 border-gray-300 h-[30px]' : 'h-[30px]'}/>
@@ -114,6 +116,7 @@ export default function FindByCategory() {
                     <button onClick={()=>setSkip((products?.totalPages)>skip+1?skip+1:skip)} className=' bg-red-600 p-4 m-2'>{(products?.totalPages)>skip+1?skip+1:skip}</button>
                     <button onClick={()=>setSkip(products?.totalPages -1)} className=' bg-red-600 p-4 m-2'>Last Page</button>
                 </div>
+            <Footer/>
             </div>
         </div>
         </>

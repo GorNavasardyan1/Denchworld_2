@@ -8,6 +8,7 @@ import GetAllProducts from '../../components/GetAllProducts'
 import Carousel from '../../components/carusel/Carusel'
 import Basket from '../../components/basket/Basket'
 import { Context } from '../../App'
+import Footer from '../../components/footer/Footer'
 
 export default function Home() {
   const [categories,setCategories] = useState([])
@@ -31,6 +32,7 @@ export default function Home() {
         <Carousel/>
         <FindAllCategories categories={categories}/>
         <GetAllProducts add={add} />
+        <Footer/>
       </div>
       }
     </>
