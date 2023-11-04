@@ -18,7 +18,7 @@ export default function GetAllProducts({add}) {
             <div className=' grid sm:grid-cols-2 lg:grid-cols-4'>
                 {
                     allProducts.map(el => <div><div key={el._id}       
-                    className=' flex justify-center items-center flex-col m-4 p-4 cursor-pointer duration-300 hover:shadow-lg'
+                    className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                     onClick={() => {
                         localStorage.setItem('productID',el._id)
                         navigate('/electronic/' + el._id) }}>
@@ -26,7 +26,7 @@ export default function GetAllProducts({add}) {
                             <div className='font-semibold'>{el.title}</div>
                             <div>{el.price} ֏</div>
                             </div>
-                            <div className=' m-2 w-full flex justify-center' >
+                            <div className=' w-full flex justify-center' >
                             <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300 z-50 w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
                             </div>
                     </div>)
