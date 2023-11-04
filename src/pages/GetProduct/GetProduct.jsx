@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AllProducts, GetProductById } from '../../api'
 import Carousel from 'react-multi-carousel'
 import { Link, useNavigate } from 'react-router-dom'
@@ -6,8 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faHome } from '@fortawesome/free-solid-svg-icons'
 import Loading from '../../components/loading/Loading'
 import './GetProduct.css'
-
-
+import Footer from '../../components/footer/Footer'
+import Header from '../../components/header/Header'
+import { Context } from '../../App'
+import Basket from '../../components/basket/Basket'
 export default function GetProduct() {
     const [product,setProduct] = useState([])
     const [productRecommend,setProductRecommend] = useState([])
@@ -15,6 +17,8 @@ export default function GetProduct() {
     const [loading,setLoading] = useState(true)
     const _id = localStorage.getItem('productID')
     const navigate = useNavigate()
+    const {add,showBasket} = useContext(Context)
+
     useEffect(() => {
         GetProductById(_id).then(data => {
             console.log(data.producte);
@@ -52,7 +56,10 @@ export default function GetProduct() {
   return (
     <>
     {loading && <Loading/>}
-    {!loading &&  <div className='product grid grid-cols-2 2xl:container 2xl:mx-auto'>
+    {!loading &&  <div>
+      <Header/>
+      {showBasket && <Basket/>}
+      <div className='text-black product grid grid-cols-2 2xl:container 2xl:mx-auto'>
         <div className='info bg-[#F5F7FF]'>
             <div className='info h-full w-full flex flex-col p-20'>
               <div className=' mb-8'>
@@ -71,19 +78,18 @@ export default function GetProduct() {
             </div>
         </div>
         <div className='imagesBlock m-8'>
-          {console.log(product)}
             <Carousel responsive={responsive} className='images w-[700px] h-[700px]'>
               {
                 product.photos.map(el => <div key={el._id} className='image w-[700px] h-[500px] flex' style={{background:`url('${el.url}')`,backgroundSize:'cover',backgroundPosition:'center'}}></div>)
               }
             </Carousel>
         </div>
-    </div>} 
-      <div className='2xl:container 2xl:mx-auto w-full'>
+    </div>
+      <div className='2xl:container 2xl:mx-auto w-full mb-20'>
             <p className=' text-center  text-2xl font-semibold mt-2'>Այլ ապրանքներ</p>
               <div className=' grid sm:grid-cols-2 lg:grid-cols-4'>
               {
-                productRecommend.map(el => <a href="" className='m-4' key={el._id}>
+                productRecommend.map(el => <div><a href="" className='m-4' key={el._id}>
                     <div key={el._id} 
                       className=' flex justify-center items-center flex-col  p-4 cursor-pointer duration-300 hover:shadow-lg'
                       onClick={() => {
@@ -93,10 +99,17 @@ export default function GetProduct() {
                           <div className='titleCateg font-semibold'>{el.title}</div>
                           <div>{el.price} ֏</div>
                       </div>
-                  </a>)
+                  </a>
+                      <div className=' flex justify-center' >
+                        <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300  w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
+                      </div>
+                      </div>
+                  )
               }
               </div>
       </div>
+      <Footer/>
+      </div>}
   </>
   )
 }

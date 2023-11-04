@@ -8,6 +8,9 @@ import AddProductPage from "./pages/dashboard/AddProductPage";
 import AddCategoryPage from "./pages/dashboard/AddCategoryPage"
 import Buy from "./pages/buy/Buy"
 import React, { useState } from "react"
+import About from "./pages/about/About"
+import Contact from "./pages/contact/Contact"
+
 
 export const Context = React.createContext();
 
@@ -57,6 +60,8 @@ function App() {
     <Context.Provider value={contextValue}>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/category/:_id" element={<FindByCategory/>} />
         <Route path="/electronic/:_id" element={<GetProduct/>}/>

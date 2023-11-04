@@ -8,6 +8,8 @@ import './FindByCategory.css'
 import Basket from '../../components/basket/Basket'
 import { Context } from '../../App'
 import Header from '../../components/header/Header'
+import Footer from '../../components/footer/Footer'
+import '../../components/footer/Footer.css'
 export default function FindByCategory() {
     const [products,setProducts] = useState([])
     const [filteredProduct,setFilteredProduct] = useState([])
@@ -44,8 +46,8 @@ export default function FindByCategory() {
         <Header/>
         {showBasket && <Basket/>}
         <div className='flex'>
-            <div className={menu ? 'active w-[260px] bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col ' 
-            : 'leftBlok w-[260px] bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col'}>
+            <div className={menu ? 'text-black active w-[260px] bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col ' 
+            : 'leftBlok w-[260px] text-black bg-[#F5F7FF] fixed h-[100vh] flex items-center flex-col'}>
                 <div className=' mt-2'>
                     <button onClick={() => navigate('/')} ><FontAwesomeIcon icon={faHome}/> Home</button>
                     <button onClick={() => navigate(-1)}><FontAwesomeIcon icon={faAngleLeft} fade className='ml-1 mr-1'/>Back</button>
@@ -65,7 +67,7 @@ export default function FindByCategory() {
                     }
                 </div>
             </div>
-            <div className='blok w-[340px]'></div>
+            <div className='blok w-[320px]'></div>
             <div className='menuBtn bg-[#F5F7FF] p-2 fixed w-full flex justify-center items-center'>
                 <div className='menuBar' onClick={() => openMenu(!menu)}>
                     <FontAwesomeIcon icon={faBars} className={menu ? 'border-b-4 border-gray-300 h-[30px]' : 'h-[30px]'}/>
@@ -88,7 +90,7 @@ export default function FindByCategory() {
                             <div>{el.price} ֏</div>
                         </div>
                         <div className=' w-full flex justify-center' >
-                        <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300 z-50 w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
+                        <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300  w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
                         </div>
                         </div>
                         ) 
@@ -103,17 +105,18 @@ export default function FindByCategory() {
                             <div>{el.price} ֏</div>
                         </div>
                             <div className=' w-full flex justify-center' >
-                                    <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300 z-50 w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
+                                    <button className=' px-2 py-2  bg-[#0156FF] rounded-[10px] hover:bg-slate-300 border-2 duration-300 z-[20] w-[120px]' onClick={() => add(el)}>Ավելացնել զամբյուղ</button>
                             </div>
                         </div>)
                     }
                 </div>
-                <div className=' flex items-end justify-center w-full h-full'>
+                <div className=' flex mt-20 mb-10 justify-center w-full '>
                     <button onClick={()=>setSkip(0)} className=' bg-red-600 p-4 m-2'>First Page</button>
                     <button onClick={()=>setSkip(0<skip-1?skip-1:skip)} className=' bg-red-600 p-4 m-2'>{0<skip-1?skip-1:skip}</button>
                     <button onClick={()=>setSkip((products?.totalPages)>skip+1?skip+1:skip)} className=' bg-red-600 p-4 m-2'>{(products?.totalPages)>skip+1?skip+1:skip}</button>
                     <button onClick={()=>setSkip(products?.totalPages -1)} className=' bg-red-600 p-4 m-2'>Last Page</button>
                 </div>
+            <Footer/>
             </div>
         </div>
         </>

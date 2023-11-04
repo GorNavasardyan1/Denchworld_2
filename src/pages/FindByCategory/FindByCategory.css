@@ -8,14 +8,13 @@
     }
 }
 
-
-@media (max-width:500px) {
+@media (max-width:1000px) {
     .menuBtn{
         display: flex !important;
     }
     .menuBar{
         position: fixed;
-        z-index: 100;
+        z-index: 1000 !important;
         left: 20px;
     }
     .leftBlok{
@@ -26,6 +25,7 @@
         width: 100% !important;
         height: 300px !important;
         margin-top: 50px;
+        z-index: 1000 !important;
     }
     .blok{
         display: none;

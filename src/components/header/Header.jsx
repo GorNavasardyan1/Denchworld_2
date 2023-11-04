@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
 import { faMoon, faShoppingCart, faSunPlantWilt } from '@fortawesome/free-solid-svg-icons'
 import { Context } from '../../App'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function Header() {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const {showBasket,setShowBasket, addToBasket} = useContext(Context)
-
+    const navigate = useNavigate()
     useEffect(() => {
       const body = document.body;
       if (localStorage.getItem('moon') === 'true') {
@@ -51,7 +52,19 @@ export default function Header() {
             <div className={isDarkMode ? 'dark-mode logo duration-300 ease-linear logo h-[70px] w-full flex items-center justify-start p-8' 
              : ' logo duration-500 h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8'}>
                 <div className='logo w-full max-w-[1400px] mx-auto flex justify-between items-center '>
-                    <img src="/icon.png" alt="" className=' h-[40px]' />
+                    <div className=' flex'>
+                        <img src="/icon.png" alt="" className=' h-[40px] cursor-pointer' onClick={() => navigate('/')} />
+                        <div className='hCont flex items-center'>
+                            <div className={isDarkMode ? ' ml-2 mr-4 hover:border-b-2' : 'ml-2 mr-4 hover:border-b-2 border-black'}>
+                                <Link to={'/about'}>Մեր մասին</Link>
+                            </div>
+                            <div className={isDarkMode ? 'ml-2 mr-4 hover:border-b-2' : 'ml-2 mr-4 hover:border-b-2 border-black'}>
+                                <Link to={'/contact'}>Կապ մեզ հետ</Link>
+                            </div>
+
+                        </div>
+                    </div>
+
                     <div className=' flex'>
                     <div onClick={() => setShowBasket(!showBasket)} className=' cursor-pointer'>
                         <FontAwesomeIcon  icon={faShoppingCart} fade className={isDarkMode ? 'text-white sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]'
@@ -67,7 +80,7 @@ export default function Header() {
                 </div>
             </div>
         </div>
-        <div className=' h-[120px]'></div>
+        <div className=' h-[110px]'></div>
     </>
   )
 }
