@@ -8,6 +8,10 @@ export default function Modal({
   lastImage,
   countImgae,
   deletePhoto,
+  setUpdatedProduct,
+  updatedProduct,
+  handleFileChange,
+  updateProduct,
 }) {
   return (
     <div
@@ -56,20 +60,56 @@ export default function Modal({
         <div className="flex flex-col">
           <span className="mt-10">
             Product Title:
-            <input className="mx-3" type="text" value={oneCategory?.title} />
+            <input
+              className="mx-3"
+              type="text"
+              value={updatedProduct.title}
+              onChange={(e) =>
+                setUpdatedProduct({ ...updatedProduct, title: e.target.value })
+              }
+            />
           </span>
           <span className="mt-2">
             Product Price:
-            <input className="mx-3" type="text" value={oneCategory?.price} />
+            <input
+              className="mx-3"
+              type="text"
+              value={updatedProduct.price}
+              onChange={(e) =>
+                setUpdatedProduct({ ...updatedProduct, price: e.target.value })
+              }
+            />
           </span>
           <span className="mt-2">
             Product Description:
             <textarea
               rows="2"
               cols="50"
-              value={oneCategory?.description}
+              value={updatedProduct.description}
+              onChange={(e) =>
+                setUpdatedProduct({
+                  ...updatedProduct,
+                  description: e.target.value,
+                })
+              }
             ></textarea>
           </span>
+          <label
+            className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+            htmlFor="small_size"
+          >
+            Select potos
+          </label>
+          <input
+            className="block w-full mb-4 p-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            multiple
+          />
+          <button onClick={(e)=>updateProduct(e)} className=" text-[14px] font-semibold py-2 cursor-pointer text-white bg-sky-500 rounded-3xl ">
+            Send
+          </button>
         </div>
       </div>
     </div>

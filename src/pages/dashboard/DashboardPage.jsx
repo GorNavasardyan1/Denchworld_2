@@ -73,9 +73,16 @@ export default function Hashboard() {
 
   const [oneCategory, setOneCategory] = useState({});
   const [countImgae, setCountImage] = useState(0);
+  const [updatedProduct , setUpdatedProduct] = useState({});
   const modal = (oneCategory) => {
     setActive(true);
     setOneCategory(oneCategory);
+    setUpdatedProduct({
+      productId: oneCategory._id,
+      title: oneCategory.title,
+      price: oneCategory.price,
+      description: oneCategory.description
+    });
     setCountImage(0);
   };
 
@@ -118,6 +125,47 @@ export default function Hashboard() {
     }
   };
 
+  const handleFileChange = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    setUpdatedProduct({
+      ...updatedProduct,
+      photos: selectedFiles,
+    });
+  };
+ const updateProduct = async (e) => {
+    e.preventDefault()
+    toast.loading('is added...',{id:'1'})
+    const data = new FormData();
+    updatedProduct?.photos?.forEach((file, index) => {
+        data.append(`image${index}`, file);
+    });
+    data.append('productId', updatedProduct?.productId);
+    if(updatedProduct?.title) {
+      data.append('title', updatedProduct?.title);
+    }
+    if(updatedProduct?.description) {
+      data.append('description', updatedProduct?.description);
+    }
+    if(updatedProduct?.price) {
+      data.append('price', updatedProduct?.price);
+    }
+ try {
+    const response = await fetch("https://backendv1.vercel.app/post/update/product", {
+        method: "PUT",
+        body: data
+    })
+    const data2 = await response.json()
+    if (response.status === 200) {
+        toast.success(data2.message,{id:'1'})
+      } else {
+        toast.error(data2.message,{id:'1'})
+      }
+
+ } catch (error) {
+    console.error('ERROR:', error);
+ }
+}
+
   return (
     <>
       {loading ? (
@@ -147,6 +195,10 @@ export default function Hashboard() {
         lastImage={lastImage}
         countImgae={countImgae}
         deletePhoto={deletePhoto}
+        setUpdatedProduct={setUpdatedProduct}
+        updatedProduct={updatedProduct}
+        handleFileChange={handleFileChange}
+        updateProduct={updateProduct}
       />
     </>
   );
