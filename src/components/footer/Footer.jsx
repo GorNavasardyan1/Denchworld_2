@@ -14,7 +14,8 @@ export default function Footer() {
     }
   return (
     <>
-        <div className='fAllFonts fAll flex justify-between bg-black'>
+    <div className=' w-full bg-black'>
+        <div className='fAllFonts fAll container mx-auto flex justify-between '>
             <div className=' m-4 flex flex-col '>
                 <div onClick={upHandler} className='h-[80px] w-[280px] cursor-pointer'>
                     <img src="/icon.png" className=' h-full w-full' alt=""/>
@@ -71,6 +72,7 @@ export default function Footer() {
         <div className=' flex justify-center items-center cursor-pointer h-[40px] overflow-hidden w-full bg-[#232529] duration-700 ' onClick={upHandler}>
             <FontAwesomeIcon icon={faAngleUp} className='h-[40px] w-full border-t-2 text-white duration-700 '/>
         </div>
+    </div>
     </>
   )
 }
