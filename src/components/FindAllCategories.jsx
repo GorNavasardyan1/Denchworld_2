@@ -24,7 +24,7 @@ export default function FindAllCategories({categories}) {
                 onClick={() => navigate('/category/' + el._id)} >
                     <img src={el.photo} alt="" 
                     className=' h-[250px] w-[300px]'/>
-                    <div className='mt-2'>{el.name}</div>
+                    <div className='mt-2 font-semibold'>{el.name}</div>
                 </div>) : filteredCategories.map(el => <div key={el._id}
                 className=' flex justify-center items-center flex-col m-4 p-4 cursor-pointer duration-300 hover:shadow-lg'
                 onClick={() => navigate('/category/' + el._id)} >
