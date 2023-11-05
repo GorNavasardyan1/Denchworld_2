@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound";
 
 export default function Hashboard() {
+  const [actions, setActions] = useState(0);
   //modal isWindow
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -51,7 +52,7 @@ export default function Hashboard() {
       console.log(data);
       setLoading(false);
     });
-  }, [lastId]);
+  }, [lastId, actions]);
   //delete product
   const deleteProduct = async (id) => {
     toast.loading("Deleting", { id: "1" });
@@ -65,6 +66,7 @@ export default function Hashboard() {
       const data = await response.json();
       if (response.status == 200) {
         toast.success(data.message, { id: "1" });
+        setActions(actions + 1);
       }
     } catch (error) {
       console.log("error");
@@ -73,7 +75,7 @@ export default function Hashboard() {
 
   const [oneCategory, setOneCategory] = useState({});
   const [countImgae, setCountImage] = useState(0);
-  const [updatedProduct , setUpdatedProduct] = useState({});
+  const [updatedProduct, setUpdatedProduct] = useState({});
   const modal = (oneCategory) => {
     setActive(true);
     setOneCategory(oneCategory);
@@ -81,7 +83,7 @@ export default function Hashboard() {
       productId: oneCategory._id,
       title: oneCategory.title,
       price: oneCategory.price,
-      description: oneCategory.description
+      description: oneCategory.description,
     });
     setCountImage(0);
   };
@@ -117,6 +119,7 @@ export default function Hashboard() {
       const data = await response.json();
       if (response.status === 200) {
         toast.success(data.message, { id: "1" });
+        setActions(actions + 1);
       } else {
         toast.error(data.message, { id: "1" });
       }
@@ -132,39 +135,42 @@ export default function Hashboard() {
       photos: selectedFiles,
     });
   };
- const updateProduct = async (e) => {
-    e.preventDefault()
-    toast.loading('is added...',{id:'1'})
+  const updateProduct = async (e) => {
+    e.preventDefault();
+    toast.loading("is added...", { id: "1" });
     const data = new FormData();
     updatedProduct?.photos?.forEach((file, index) => {
-        data.append(`image${index}`, file);
+      data.append(`image${index}`, file);
     });
-    data.append('productId', updatedProduct?.productId);
-    if(updatedProduct?.title) {
-      data.append('title', updatedProduct?.title);
+    data.append("productId", updatedProduct?.productId);
+    if (updatedProduct?.title) {
+      data.append("title", updatedProduct?.title);
     }
-    if(updatedProduct?.description) {
-      data.append('description', updatedProduct?.description);
+    if (updatedProduct?.description) {
+      data.append("description", updatedProduct?.description);
     }
-    if(updatedProduct?.price) {
-      data.append('price', updatedProduct?.price);
+    if (updatedProduct?.price) {
+      data.append("price", updatedProduct?.price);
     }
- try {
-    const response = await fetch("https://backendv1.vercel.app/post/update/product", {
-        method: "PUT",
-        body: data
-    })
-    const data2 = await response.json()
-    if (response.status === 200) {
-        toast.success(data2.message,{id:'1'})
+    try {
+      const response = await fetch(
+        "https://backendv1.vercel.app/post/update/product",
+        {
+          method: "PUT",
+          body: data,
+        }
+      );
+      const data2 = await response.json();
+      if (response.status === 200) {
+        toast.success(data2.message, { id: "1" });
+        setActions(actions + 1);
       } else {
-        toast.error(data2.message,{id:'1'})
+        toast.error(data2.message, { id: "1" });
       }
-
- } catch (error) {
-    console.error('ERROR:', error);
- }
-}
+    } catch (error) {
+      console.error("ERROR:", error);
+    }
+  };
 
   return (
     <>
