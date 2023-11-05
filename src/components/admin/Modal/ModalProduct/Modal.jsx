@@ -61,7 +61,7 @@ export default function Modal({
           <span className="mt-10">
             Product Title:
             <input
-              className="mx-3"
+              className="mx-3 dark:border-gray-800 border-2"
               type="text"
               value={updatedProduct.title}
               onChange={(e) =>
@@ -72,7 +72,7 @@ export default function Modal({
           <span className="mt-2">
             Product Price:
             <input
-              className="mx-3"
+              className="mx-3 dark:border-gray-800 border-2"
               type="text"
               value={updatedProduct.price}
               onChange={(e) =>
@@ -83,9 +83,10 @@ export default function Modal({
           <span className="mt-2">
             Product Description:
             <textarea
-              rows="2"
+              rows="4"
               cols="50"
               value={updatedProduct.description}
+              className="dark:border-gray-800 border-2"
               onChange={(e) =>
                 setUpdatedProduct({
                   ...updatedProduct,
