@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
     const upHandler = () => {
-        window.scrollTo({top:0,behavior:"smooth"})
+        window.scrollTo({top:0})
     }
     const submitHandler = (e) => {
         e.preventDefault()
@@ -17,7 +17,7 @@ export default function Footer() {
     <div className=' w-full bg-black'>
         <div className='fAllFonts fAll container mx-auto flex justify-between '>
             <div className=' m-4 flex flex-col '>
-                <div onClick={upHandler} className='h-[80px] w-[280px] cursor-pointer'>
+                <div className='h-[80px] w-[280px]'>
                     <img src="/icon.png" className=' h-full w-full' alt=""/>
                 </div>
                 <div className=' grid grid-cols-2'>
