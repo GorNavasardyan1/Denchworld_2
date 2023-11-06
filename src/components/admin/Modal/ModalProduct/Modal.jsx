@@ -90,7 +90,7 @@ export default function Modal({
               />
           </span>
           <label
-            className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+            className="block mb-2 mt-10 text-sm font-semibold text-gray-900 dark:text-white"
             htmlFor="small_size"
           >
             Select potos

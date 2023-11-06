@@ -11,7 +11,7 @@ export default function TextEditor({ markdownText, onMarkdownChange }) {
 
   const modules = {
     toolbar: [  
-      [{ 'color': ["red","green"] }],
+      [{ 'color': ["red","green","white","yellowgreen","gray","orange"] }],
       [{ "font": [] }],
       ['bold', 'italic', 'underline', 'strike'], 
       [{ 'list': 'ordered' }, { 'list': 'bullet' }], 
