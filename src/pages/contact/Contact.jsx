@@ -6,8 +6,14 @@ import { faAddressBook, faAngleLeft, faAngleRight, faAt, faClock, faHome, faLoca
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function Contact() {
   const navigate = useNavigate()
+  const upHandler = () => {
+      window.scrollTo({top:0,behavior:'smooth'})
+  }
+
+
   return (
     <>
+    {upHandler()}
     <div className=''>
       <Header/>
       <div className='container w-full mx-auto'>

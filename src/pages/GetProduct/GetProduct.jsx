@@ -58,8 +58,8 @@ export default function GetProduct() {
     {!loading &&  <div>
       <Header/>
       {showBasket && <Basket/>}
-      <div className='text-black product grid grid-cols-2 2xl:container 2xl:mx-auto'>
-        <div className='info bg-[#F5F7FF]'>
+      <div className=' product grid grid-cols-2 2xl:container 2xl:mx-auto'>
+        <div className='info '>
             <div className='info h-full w-full flex flex-col p-20'>
               <div className=' mb-8'>
                 <Link to={'/'}className='mr-2'><FontAwesomeIcon icon={faHome}/>   Home</Link>
@@ -70,7 +70,7 @@ export default function GetProduct() {
                 <div className=' flex items-end h-full'>
                     <div className='buyBlock flex items-center'>
                       <button onClick={() => navigate('/buy/' + product._id)} className='border-none bg-[#0156FF] text-white h-[50px] w-[151px] rounded-[40px]'>Ավելացնել քարտին</button>
-                      <input type="number" min={1}  placeholder='1' className='quantityChanger border-2 border-black rounded outline-none w-[60px] ml-2 p-2' onChange={(e) => setCounter(e.target.value)}/>
+                      <input type="number" min={1}  placeholder='1' className='quantityChanger text-black border-2 border-black rounded outline-none w-[60px] ml-2 p-2' onChange={(e) => setCounter(e.target.value)}/>
                       <div className=' ml-2'>{counter > 0 ? counter * product.price + '֏' : product.price + '֏'}</div>
                     </div>
                 </div>
@@ -88,8 +88,8 @@ export default function GetProduct() {
             <p className=' text-center  text-2xl font-semibold mt-2'>Այլ ապրանքներ</p>
               <div className=' grid sm:grid-cols-2 lg:grid-cols-4'>
               {
-                productRecommend.map(el => <div><a href="" className='m-4' key={el._id}>
-                    <div key={el._id} 
+                productRecommend.map(el => <div key={el._id}><a href="" className='m-4'>
+                    <div 
                       className=' flex justify-center items-center flex-col  p-4 cursor-pointer duration-300 hover:shadow-lg'
                       onClick={() => {
                         localStorage.setItem('productID',el._id)
