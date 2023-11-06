@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { useState, useEffect} from "react";
 import { GetAllCategories } from '../../api'
 import NotFound from "../notFound/NotFound";
+import TextEditor from '../TextEditor';
 
 export default function AddPost() {
     const token = localStorage.getItem("jwtToken");
@@ -57,16 +58,19 @@ export default function AddPost() {
                 console.log(categoryID)
         })
     },[])
+
     return <>
        {
            userData?.roles?.[0] === "ADMIN" && <div>
             <AdminNavigation />
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-10 border-2">
+        <div>
+            <h2>Product Description</h2>
+            <TextEditor markdownText={description} onMarkdownChange={setDescription}/>
+        </div>
         <form onSubmit={addPost} className=" flex flex-col">
         <label className="block mt-8 mb-2 text-sm font-semibold text-gray-900 dark:text-white" htmlFor="small_size">The product's name</label>
         <input placeholder="title" className=" p-2 outline-none border-2" type="text" value={title} onChange={(e)=>setTitle(e.target.value)}/>
-        <label className="block mt-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white" htmlFor="small_size">Product Description</label>
-        <input placeholder="description" className=" p-2 outline-none border-2" type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/>
         <label className="block mt-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white" htmlFor="small_size">Product price</label>
         <input type="number" min={0} value={price} className=" p-2 outline-none border-2" onChange={(e)=>setPrice(e.target.value)}/>
         <label className="block mt-2 mb-2 text-sm font-semibold text-gray-900 dark:text-white" htmlFor="small_size">Choose a category</label>

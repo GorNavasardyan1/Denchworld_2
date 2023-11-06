@@ -76,15 +76,16 @@ export default function Hashboard() {
   const [oneCategory, setOneCategory] = useState({});
   const [countImgae, setCountImage] = useState(0);
   const [updatedProduct, setUpdatedProduct] = useState({});
+  const [description, setDescription] = useState('');
   const modal = (oneCategory) => {
     setActive(true);
     setOneCategory(oneCategory);
     setUpdatedProduct({
-      productId: oneCategory._id,
-      title: oneCategory.title,
-      price: oneCategory.price,
-      description: oneCategory.description,
+      productId: oneCategory?._id,
+      title: oneCategory?.title,
+      price: oneCategory?.price,
     });
+    setDescription(oneCategory?.description);
     setCountImage(0);
   };
 
@@ -146,8 +147,8 @@ export default function Hashboard() {
     if (updatedProduct?.title) {
       data.append("title", updatedProduct?.title);
     }
-    if (updatedProduct?.description) {
-      data.append("description", updatedProduct?.description);
+    if (description) {
+      data.append("description", description);
     }
     if (updatedProduct?.price) {
       data.append("price", updatedProduct?.price);
@@ -205,6 +206,8 @@ export default function Hashboard() {
         updatedProduct={updatedProduct}
         handleFileChange={handleFileChange}
         updateProduct={updateProduct}
+        markdownText={description}
+        onMarkdownChange={setDescription}
       />
     </>
   );

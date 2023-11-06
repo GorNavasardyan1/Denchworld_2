@@ -1,5 +1,5 @@
 import "./modal.css";
-
+import TextEditor from "../../../../components/TextEditor";
 export default function Modal({
   active,
   setActive,
@@ -12,6 +12,8 @@ export default function Modal({
   updatedProduct,
   handleFileChange,
   updateProduct,
+  markdownText,
+  onMarkdownChange
 }) {
   return (
     <div
@@ -82,18 +84,10 @@ export default function Modal({
           </span>
           <span className="mt-2">
             Product Description:
-            <textarea
-              rows="4"
-              cols="50"
-              value={updatedProduct.description}
-              className="dark:border-gray-800 border-2"
-              onChange={(e) =>
-                setUpdatedProduct({
-                  ...updatedProduct,
-                  description: e.target.value,
-                })
-              }
-            ></textarea>
+              <TextEditor
+                markdownText={markdownText}
+                onMarkdownChange={onMarkdownChange}
+              />
           </span>
           <label
             className="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
@@ -108,7 +102,10 @@ export default function Modal({
             onChange={handleFileChange}
             multiple
           />
-          <button onClick={(e)=>updateProduct(e)} className=" text-[14px] font-semibold py-2 cursor-pointer text-white bg-sky-500 rounded-3xl ">
+          <button
+            onClick={(e) => updateProduct(e)}
+            className=" text-[14px] font-semibold py-2 cursor-pointer text-white bg-sky-500 rounded-3xl "
+          >
             Send
           </button>
         </div>

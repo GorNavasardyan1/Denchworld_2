@@ -52,7 +52,6 @@ export default function GetProduct() {
     };
 
 
-
   return (
     <>
     {loading && <Loading/>}
@@ -67,7 +66,7 @@ export default function GetProduct() {
                 <Link to={-1}><FontAwesomeIcon icon={faAngleLeft} fade/> Back</Link>
               </div>
                 <div className='title font-bold text-[32px]'>{product.title}</div>
-                <div className='desc text-justify'>{product.description}</div>
+                <div dangerouslySetInnerHTML={{ __html: product.description }} />
                 <div className=' flex items-end h-full'>
                     <div className='buyBlock flex items-center'>
                       <button onClick={() => navigate('/buy/' + product._id)} className='border-none bg-[#0156FF] text-white h-[50px] w-[151px] rounded-[40px]'>Ավելացնել քարտին</button>
