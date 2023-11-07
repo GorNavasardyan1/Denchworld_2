@@ -9,8 +9,8 @@ export default function Basket() {
 
     return (
         <>
-                {addToBasket.length == 0 && showBasket ? <p className=' fixed right-0 z-[1000]'>Զամբյուղը դատարկ է</p> :
-                <div className=' bg-[#001D3D] p-4 fixed right-0  z-[1000] rounded-[10px]' >
+                {addToBasket.length == 0 && showBasket ? <p className=' fixed mt-4 right-8 z-[1000]'>Զամբյուղը դատարկ է</p> :
+                <div className=' bg-[#001D3D] mt-4 p-4 fixed right-8 z-[1000] rounded-[10px]' >
                     {
                     addToBasket.map(el => <div key={el._id} className=' text-xl text-white'>
                             <div className=' flex justify-between items-center mt-2 '>

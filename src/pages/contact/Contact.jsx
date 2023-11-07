@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import { useNavigate } from 'react-router-dom'
+import emailjs from '@emailjs/browser';
 import { faAddressBook, faAngleLeft, faAngleRight, faAt, faClock, faHome, faLocation, faLocationDot, faMailBulk, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function Contact() {
@@ -9,9 +10,23 @@ export default function Contact() {
   const upHandler = () => {
       window.scrollTo({top:0,behavior:'smooth'})
   }
-
-
+  const form = useRef()
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_uyh6ra4', 'template_0vh8oea', form.current, '6Q_XrxKfcRkXA0okJ')
+    .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset()
+  };
+  
   return (
+
+
+
+
     <>
     {upHandler()}
     <div className=''>
@@ -55,24 +70,24 @@ export default function Contact() {
               </div>
           </div>
           <div className=' flex justify-center mt-10'>
-              <form action="">
+              <form action="" ref={form} onSubmit={sendEmail}>
                 <div className=' sm:flex lg:flex '>
                   <div className=' m-2'>
                     <p className=' mb-1'>Անուն<span className=' text-red-500'>*</span></p>
-                    <input type="text" className='border p-2 w-[300px] outline-none focus:bg-slate-200 text-black duration-200' />
+                    <input type="text" required={true} name='user_name' className='border p-2 w-[300px] outline-none focus:bg-slate-200 text-black duration-200' />
                   </div>
                   <div className=' m-2'>
                     <p className=' mb-1'>էլեկտրոնային հասցե<span className=' text-red-500'>*</span></p>
-                    <input type="email"className='border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200' />
+                    <input type="email" required={true} name='user_email' className='border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200' />
                   </div>
                 </div>
                 <div className=' m-2'>
                   <p className=' mb-1'>Հեռախոսահամար<span className=' text-red-500'>*</span></p>
-                  <input type="email"className='border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200 ' />
+                  <input type="text" required={true} name='user_phone' className=' border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200 ' />
                 </div>
                 <div className=' m-2'>
                   <p className=' mb-1'>ինչով կարող ենք օգնել ձեզ<span className=' text-red-500'>*</span></p>
-                  <textarea rows={4} className='border p-2  w-full text-black focus:bg-slate-200 duration-200 outline-none'></textarea>
+                  <textarea rows={4} required={true} name='message' className='border p-2  w-full text-black focus:bg-slate-200 duration-200 outline-none'></textarea>
                 </div>
                 <div className=' m-2'>
                   <button
