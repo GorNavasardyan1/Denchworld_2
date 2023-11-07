@@ -102,7 +102,7 @@ export default function Header() {
                       : "ml-2 mr-4 hover:border-b-2 border-black font-semibold"
                   }
                 >
-                  <Link to={"/contact"}>Կապ մեզ հետ</Link>
+                  <a href={"/contact"}>Կապ մեզ հետ</a>
                 </div>
               </div>
             </div>

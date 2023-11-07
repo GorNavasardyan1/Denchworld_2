@@ -1,34 +1,56 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleRight, faAt, faClock, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
+
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
-import { useNavigate } from 'react-router-dom'
 import emailjs from '@emailjs/browser';
-import { faAddressBook, faAngleLeft, faAngleRight, faAt, faClock, faHome, faLocation, faLocationDot, faMailBulk, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import validator from 'validator';
+
 export default function Contact() {
   const navigate = useNavigate()
-  const upHandler = () => {
-      window.scrollTo({top:0,behavior:'smooth'})
-  }
+
+
+  // =============================== CHECK USER EMAIL ==============================
+  const [emailCorrect,setEmailCorrect] = useState(false)
+  const [email,setEmail] = useState('')
+  useEffect(() => {
+    if(validator.isEmail(email)) setEmailCorrect(true)
+    else setEmailCorrect(false)
+  },[email])
+
+
+  // ================================ CHECK USER PHONE ======================================
+
+  const [phoneNumber,setPhoneNumber] = useState('')
+  const [phoneCorrect,setPhoneCorrect] = useState(false)
+  useEffect(() => {
+    if( +phoneNumber - +phoneNumber == 0 || phoneNumber == '+') setPhoneCorrect(true)
+    else setPhoneCorrect(false) 
+  },[phoneNumber])
+
+  //  ========================== SEND MESSAGE EMAIL ============================================
   const form = useRef()
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_uyh6ra4', 'template_0vh8oea', form.current, '6Q_XrxKfcRkXA0okJ')
-    .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-      e.target.reset()
+    if(emailCorrect && phoneCorrect) {
+      emailjs.sendForm('service_uyh6ra4', 'template_0vh8oea', form.current, '6Q_XrxKfcRkXA0okJ')
+      .then((result) => {
+          console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+        e.target.reset()
+    } 
   };
+
   
   return (
 
-
-
-
     <>
-    {upHandler()}
     <div className=''>
       <Header/>
       <div className='container w-full mx-auto'>
@@ -78,12 +100,14 @@ export default function Contact() {
                   </div>
                   <div className=' m-2'>
                     <p className=' mb-1'>էլեկտրոնային հասցե<span className=' text-red-500'>*</span></p>
-                    <input type="email" required={true} name='user_email' className='border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200' />
+                    <input type="email" onChange={(e) => setEmail(e.target.value)} required={true} name='user_email' className={email.length == 0 || emailCorrect ? 'border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200' 
+                    : 'border-2 border-red-600 p-2 w-[300px] focus:bg-slate-200 outline-none text-black' } />
                   </div>
                 </div>
                 <div className=' m-2'>
                   <p className=' mb-1'>Հեռախոսահամար<span className=' text-red-500'>*</span></p>
-                  <input type="text" required={true} name='user_phone' className=' border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200 ' />
+                  <input type="text" onChange={(e) => setPhoneNumber(e.target.value)} required={true} name='user_phone' className={phoneNumber.length == 0 || phoneCorrect ? ' border p-2 w-[300px] focus:bg-slate-200 outline-none text-black duration-200 ' 
+                  : 'border-2 border-red-600 p-2 w-[300px] focus:bg-slate-200 outline-none text-black'} />
                 </div>
                 <div className=' m-2'>
                   <p className=' mb-1'>ինչով կարող ենք օգնել ձեզ<span className=' text-red-500'>*</span></p>

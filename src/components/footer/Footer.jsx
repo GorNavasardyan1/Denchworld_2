@@ -36,7 +36,7 @@ export default function Footer() {
                     </div>
                     <div className=' m-4 text-white font-semibold'>
                     <div className='m-4'>
-                            <Link to={'/contact'} className='hover:border-b'>Կապ մեզ հետ</Link>
+                            <a href={'/contact'} className='hover:border-b'>Կապ մեզ հետ</a>
                         </div>
                         <p className=' mt-4 ml-4'>Մեզ հետ կարող եք նաև կապ հաստատել</p>
                             <div className=' ml-4'>

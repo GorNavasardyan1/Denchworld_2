@@ -23,7 +23,6 @@ function App() {
     }
   }, []);
   useEffect(() => {
-    console.log(addToBasket);
     localStorage.setItem("basket", JSON.stringify(addToBasket));
   }, [addToBasket]);
 
