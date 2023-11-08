@@ -10,8 +10,15 @@ import Basket from '../../components/basket/Basket'
 import { Context } from '../../App'
 import Footer from '../../components/footer/Footer'
 
+
+export const CategoriesContext = React.createContext()
+
+
 export default function Home() {
   const [categories,setCategories] = useState([])
+  const categoriesValue = {
+    categories:categories
+  }
   const [loading,setLoading] = useState(true)
   const {add,showBasket} = useContext(Context)
   useEffect(() => {
@@ -26,14 +33,16 @@ export default function Home() {
     <>
       {loading && <Loading/>}
       {!loading && 
+      <CategoriesContext.Provider value={categoriesValue}>
         <div>
         <Header/>
         {showBasket && <Basket/>}
         <Carousel/>
-        <FindAllCategories categories={categories}/>
+        <FindAllCategories />
         <GetAllProducts add={add} />
         <Footer/>
       </div>
+      </CategoriesContext.Provider>
       }
     </>
   )

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import Basket from '../../components/basket/Basket'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faAt, faClock, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,8 +9,11 @@ import Footer from '../../components/footer/Footer'
 import emailjs from '@emailjs/browser';
 
 import validator from 'validator';
+import { Context } from '../../App'
 
 export default function Contact() {
+
+  const {showBasket} = useContext(Context)
   const navigate = useNavigate()
 
 
@@ -53,6 +56,7 @@ export default function Contact() {
     <>
     <div className=''>
       <Header/>
+      {showBasket && <Basket/>}
       <div className='container w-full mx-auto'>
           <div className=' mt-8 flex ml-4'>
             <button onClick={() => navigate('/')} className=' font-semibold' > Գլխավոր էջ</button>

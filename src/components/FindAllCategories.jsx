@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-export default function FindAllCategories({categories}) {
+import { CategoriesContext } from '../pages/home/Home';
+export default function FindAllCategories() {
+    const {categories} = useContext(CategoriesContext)
     const navigate = useNavigate()
     const [showAll,setShowAll] = useState(false)
     const [filteredCategories,setFilteredCategories] = useState([])
@@ -10,7 +11,6 @@ export default function FindAllCategories({categories}) {
       setFilteredCategories(filter)
     },[])
     
-
 
   return (
     <>

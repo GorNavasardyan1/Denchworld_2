@@ -47,9 +47,11 @@ export default function Header() {
             <div>
               <span className=" hasce">
                 Այցելեք մեր ցուցասրահը Փողոց Հասցե Քաղաք Հասցե,
-                <span className=" text-white ml-2 border-b border-white cursor-pointer">
-                  Կապ մեզ հետ
-                </span>
+                <a href="/contact">
+                  <span className=" text-white ml-2 border-b border-white cursor-pointer">
+                    Կապ մեզ հետ
+                  </span>
+                </a>
               </span>
             </div>
             <div>
