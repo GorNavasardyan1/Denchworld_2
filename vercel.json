@@ -1,14 +1,8 @@
 {
-        "routes" : [
-          {
-            "src" : "/(.*)",
-            "desc" : "/"
-          }
-        ],
         "rewrites": [
           {
-            "src": "/category/:_id",
-            "desc": "/category?_id=:_id"
+            "source": "/category/:_id",
+            "destination": "/category?_id=:_id"
           }
         ]
 }
