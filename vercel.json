@@ -1,8 +1,8 @@
 {
-    "routes" :[ 
+    "rewrites" :[ 
         {
-            "src": "/category/:_id",
-            "dest": "/category/:_id"
+            "source": "/(.*)",
+            "descrtiption" : "/"
         }
     ]
 }
