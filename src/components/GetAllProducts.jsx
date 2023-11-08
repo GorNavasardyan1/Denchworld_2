@@ -17,7 +17,7 @@ export default function GetAllProducts({add}) {
             <h1 className=' text-center font-semibold text-[26px]'>Լավագույն ապրանքներ</h1>
             <div className=' grid sm:grid-cols-2 lg:grid-cols-4'>
                 {
-                    allProducts.map(el => <div><div key={el._id}       
+                    allProducts.map(el => <div key={el._id}><div        
                     className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                     onClick={() => {
                         localStorage.setItem('productID',el._id)

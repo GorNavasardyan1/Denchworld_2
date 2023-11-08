@@ -94,7 +94,7 @@ export default function FindByCategory() {
                 <div className='products w-full grid sm:grid-cols-2 lg:grid-cols-4 '>
                     {
                         filteredProduct.length && 
-                        filteredProduct.map(el => <div><div key={el._id} 
+                        filteredProduct.map(el => <div key={el._id}><div  
                         className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                         onClick={() => {
                             localStorage.setItem('productID',el._id)
@@ -109,7 +109,7 @@ export default function FindByCategory() {
                         </div>
                         ) 
                         ||
-                        products?.products.map(el => <div><div key={el._id} 
+                        products?.products.map(el => <div key={el._id}><div  
                         className=' flex justify-center items-center flex-col m-2 p-4 cursor-pointer duration-300 hover:shadow-lg'
                         onClick={() => {
                             localStorage.setItem('productID',el._id)
