@@ -76,10 +76,10 @@ export default function GetProduct() {
                 </div>
             </div>
         </div>
-        <div className='imagesBlock m-8'>
-            <Carousel responsive={responsive} className='images w-[700px] h-[700px]'>
+        <div className='imagesBlock p-2'>
+            <Carousel responsive={responsive} className='images w-[550px] h-[550px]'>
               {
-                product.photos.map(el => <div key={el._id} className='image w-[700px] h-[500px] flex' style={{background:`url('${el.url}')`,backgroundSize:'cover',backgroundPosition:'center'}}></div>)
+                product.photos.map(el => <div key={el._id} className='image w-[550px] h-[550px] flex' style={{background:`url('${el.url}')`,backgroundSize:'cover',backgroundPosition:'center'}}></div>)
               }
             </Carousel>
         </div>

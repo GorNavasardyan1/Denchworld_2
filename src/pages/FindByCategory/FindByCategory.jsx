@@ -10,6 +10,10 @@ import { Context } from '../../App'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import '../../components/footer/Footer.css'
+// import { DarkLight } from '../../components/header/Header'
+
+import { DarkLightContext } from '../../App'
+
 export default function FindByCategory() {
     const [products,setProducts] = useState([])
     const [filteredProduct,setFilteredProduct] = useState([])
@@ -22,6 +26,9 @@ export default function FindByCategory() {
     const {add,showBasket} = useContext(Context)
     const [changePageStart,setChangePageStart] = useState(false)
     const [changePageEnd,setChangePageEnd] = useState(true)
+    const {isDarkMode,setIsDarkMode} = useContext(DarkLightContext)
+
+    // const {isDarkMode} = useContext(DarkLight)
     useEffect(() => {
         if(skip == 0) {
             setChangePageStart(false)
@@ -59,9 +66,9 @@ export default function FindByCategory() {
         <>
         <Header/>
         {showBasket && <Basket/>}
-        <div className='flex'>
-            <div className={menu ? 'active w-[260px]  fixed h-[100vh] flex items-center flex-col ' 
-            : 'leftBlok w-[260px] fixed h-[100vh] flex items-center flex-col'}>
+        <div className='flex  '>
+            <div className={menu && !isDarkMode ? 'active w-[260px] bg-white fixed h-[100vh] flex items-center flex-col ' 
+            : menu && isDarkMode ? 'active w-[260px] bg-black fixed h-[100vh] flex items-center flex-col ' : 'leftBlok w-[260px] fixed h-[100vh] flex items-center flex-col'}>
                 <div className=' mt-2'>
                     <button onClick={() => navigate('/')} ><FontAwesomeIcon icon={faHome}/> Home</button>
                     <button onClick={() => navigate(-1)}><FontAwesomeIcon icon={faAngleLeft} fade className='ml-1 mr-1'/>Back</button>
@@ -82,7 +89,8 @@ export default function FindByCategory() {
                 </div>
             </div>
             <div className='blok w-[320px]'></div>
-            <div className='menuBtn bg-[#F5F7FF] p-2 fixed w-full flex justify-center items-center'>
+            <div className={isDarkMode ? 'menuBtn p-2 bg-[#232529] duration-[.3s] fixed w-full flex justify-center items-center' 
+             : 'menuBtn p-2 bg-white duration-[.3s] fixed w-full flex justify-center items-center' }>
                 <div className='menuBar' onClick={() => openMenu(!menu)}>
                     <FontAwesomeIcon icon={faBars} className={menu ? 'border-b-4 border-gray-300 h-[30px]' : 'h-[30px]'}/>
                 </div>

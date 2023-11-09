@@ -1,17 +1,40 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleUp, faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagramSquare, faTelegram, faViber, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
+import emailjs from '@emailjs/browser';
+import validator from 'validator'
+
 
 export default function Footer() {
+    const [email,setEmali] = useState('')
+    const [emailCorrect,setEmailCorrect] = useState(false)
     const upHandler = () => {
-        window.scrollTo({top:0})
+        window.scrollTo({top:0,behavior:'smooth'})
     }
+
+    useEffect(() => {
+        if(validator.isEmail(email)) setEmailCorrect(true)
+        else setEmailCorrect(false)
+      },[email])
+    
+
+    const form = useRef()
     const submitHandler = (e) => {
         e.preventDefault()
+        if(emailCorrect) {
+          emailjs.sendForm('service_mkw0mt5', 'template_e3975b9', form.current, '6Q_XrxKfcRkXA0okJ')
+          .then((result) => {
+              console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+            e.target.reset()
+        } 
     }
+  
   return (
     <>
     <div className=' w-full bg-black'>
@@ -58,11 +81,12 @@ export default function Footer() {
             </div>
                 <div className=''>
                 <div className=''>
-                    <form action="" className='m-8' onSubmit={submitHandler}>
+                    <form action="" className='m-8' ref={form} onSubmit={submitHandler}>
                         <h1 className=' text-white text-2xl mb-4'>Արագ կապ</h1>
                         <p className='fAllFonts text-white text-[16px] font-semibold mb-4'>Ուղարկեք ձեր էլ. հասցեն կամ <br /> հեռախոսահամարը</p>
                         <div className='fInputBlock flex rounded-lg overflow-hidden'>
-                            <input type="text" className=' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-black'/>
+                            <input type="text" required={true}  name='user_email' onChange={(e) => setEmali(e.target.value)} className={email.length == 0 || emailCorrect ? ' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-black' 
+                            : ' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-red-600' }/>
                             <input type="submit" value="Ուղարկել!" className=' text-white bg-[#232529] px-2 py-2 rounded-tr-lg rounded-br-lg cursor-pointer' />
                         </div>
                     </form>

@@ -12,8 +12,10 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 
 export const Context = React.createContext();
-
+export const DarkLightContext = React.createContext()
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const [addToBasket, setAddToBasket] = useState([]);
   const localBasket = localStorage.getItem("basket");
   useEffect(() => {
@@ -72,9 +74,12 @@ function App() {
     minus,
     remove,
   };
+  const darkLightContextValue = {isDarkMode,setIsDarkMode}
+
   return (
     <>
       <Context.Provider value={contextValue}>
+        <DarkLightContext.Provider value={darkLightContextValue}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -87,6 +92,7 @@ function App() {
           <Route path="/addcategory" element={<AddCategoryPage />} />
           <Route path="/buy/:_id" element={<Buy />} />
         </Routes>
+        </DarkLightContext.Provider>
       </Context.Provider>
     </>
   );

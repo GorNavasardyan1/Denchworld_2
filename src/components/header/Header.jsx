@@ -12,10 +12,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../../App";
 import { Link, useNavigate } from "react-router-dom";
+import { DarkLightContext } from "../../App";
 
 export default function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const { showBasket, setShowBasket, addToBasket } = useContext(Context);
+  const {isDarkMode,setIsDarkMode} = useContext(DarkLightContext)
+
   const navigate = useNavigate();
   useEffect(() => {
     const body = document.body;
@@ -35,6 +37,7 @@ export default function Header() {
 
   return (
     <>
+
       <div className=" fixed w-full z-[10000]">
         <div className=" w-full bg-black">
           <div className="topHeader flex justify-around items-center text-[#A2A6B0] font-semibold text-[12px] h-[44px] w-full max-w-[1400px] mx-auto ">
@@ -61,11 +64,11 @@ export default function Header() {
                   <FontAwesomeIcon
                     icon={faFacebookSquare}
                     className="mr-2 h-[20px]"
-                  />
+                    />
                   <FontAwesomeIcon
                     icon={faInstagramSquare}
                     className=" h-[20px]"
-                  />
+                    />
                 </div>
               </span>
             </div>
@@ -75,24 +78,25 @@ export default function Header() {
         <div
           className={
             isDarkMode
-              ? "dark-mode logo duration-300 ease-linear logo h-[70px] w-full flex items-center justify-start p-8"
-              : " logo duration-500 h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8"
+            ? "dark-mode logo duration-300 ease-linear logo h-[70px] w-full flex items-center justify-start p-8"
+            : " logo duration-500 h-[70px] w-full  bg-slate-100 flex items-center justify-start p-8"
           }
-        >
+          >
           <div className="logo w-full max-w-[1400px] mx-auto flex justify-between items-center ">
             <div className=" flex">
+              <a href="/">
               <img
                 src="/icon.png"
                 alt=""
                 className=" h-[40px] cursor-pointer"
-                onClick={() => navigate("/")}
-              />
-              <div className="hCont flex items-center">
+                />
+              </a>
+              <div className="hCont flex items-center text-sm">
                 <div
                   className={
                     isDarkMode
-                      ? " ml-2 mr-4 hover:border-b-2 font-semibold"
-                      : "ml-2 mr-4 hover:border-b-2 border-black font-semibold"
+                    ? " ml-2 mr-4 hover:border-b-2 font-semibold"
+                    : "ml-2 mr-4 hover:border-b-2 border-black font-semibold"
                   }
                 >
                   <Link to={"/about"}>Մեր մասին</Link>
@@ -113,16 +117,16 @@ export default function Header() {
               <div
                 onClick={() => setShowBasket(!showBasket)}
                 className=" cursor-pointer"
-              >
+                >
                 <FontAwesomeIcon
                   icon={faShoppingCart}
                   fade
                   className={
                     isDarkMode
-                      ? "text-white sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]"
-                      : "sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]"
+                    ? "text-white sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]"
+                    : "sm:h-[25px] sm:w-[25px] lg:h-[30px] lg:w-[30px]"
                   }
-                />
+                  />
                 {addToBasket.length > 0 ? (
                   <div className=" inline lg:bg-black lg:text-white font-semibold lg:px-1.5 lg:py-0.5 rounded-full">
                     {addToBasket.length > 0 ? addToBasket.length : ""}
@@ -135,8 +139,8 @@ export default function Header() {
                 onClick={toggleDarkMode}
                 className={
                   isDarkMode
-                    ? "text-white ml-2 cursor-pointer"
-                    : "ml-2 cursor-pointer"
+                  ? "text-white ml-2 cursor-pointer"
+                  : "ml-2 cursor-pointer"
                 }
               >
                 {isDarkMode ? (
