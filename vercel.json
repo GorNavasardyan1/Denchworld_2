@@ -1,8 +1,48 @@
 {
-  "redirects": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/about",
+      "dest": "/"
+    },
+    {
+      "src": "/contact",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
+    },
+    {
+      "src": "/category/[a-zA-Z0-9]+",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/electronic/[a-zA-Z0-9]+",
+      "dest": "/"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/"
+    },
+    {
+      "src": "/addproduct",
+      "dest": "/"
+    },
+    {
+      "src": "/addcategory",
+      "dest": "/"
+    },
+    {
+      "src": "/buy/:_id",
+      "dest": "/"
+    },
+    {
+      "src": "/test",
+      "dest": "/"
     }
   ]
 }

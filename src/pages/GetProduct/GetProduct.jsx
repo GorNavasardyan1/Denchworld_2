@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { AllProducts, GetProductById } from '../../api'
 import Carousel from 'react-multi-carousel'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faHome } from '@fortawesome/free-solid-svg-icons'
 import Loading from '../../components/loading/Loading'
@@ -15,7 +15,7 @@ export default function GetProduct() {
     const [productRecommend,setProductRecommend] = useState([])
     const [counter,setCounter] = useState(0)
     const [loading,setLoading] = useState(true)
-    const _id = localStorage.getItem('productID')
+    const {_id} = useParams()
     const navigate = useNavigate()
     const {add,showBasket} = useContext(Context)
 
