@@ -11,9 +11,22 @@ import validator from 'validator'
 export default function Footer() {
     const [email,setEmali] = useState('')
     const [emailCorrect,setEmailCorrect] = useState(false)
+    const [phoneNumber,setPhoneNumber] = useState('')
+    const [phoneCorrect,setPhoneCorrect] = useState(false)
+    useEffect(() => {
+      if( +phoneNumber - +phoneNumber == 0 || phoneNumber == '+') setPhoneCorrect(true)
+      else setPhoneCorrect(false) 
+    },[phoneNumber])
+    
+    
     const upHandler = () => {
         window.scrollTo({top:0,behavior:'smooth'})
     }
+
+
+
+
+
 
     useEffect(() => {
         if(validator.isEmail(email)) setEmailCorrect(true)
@@ -24,7 +37,7 @@ export default function Footer() {
     const form = useRef()
     const submitHandler = (e) => {
         e.preventDefault()
-        if(emailCorrect) {
+        if(emailCorrect || phoneCorrect) {
           emailjs.sendForm('service_mkw0mt5', 'template_e3975b9', form.current, '6Q_XrxKfcRkXA0okJ')
           .then((result) => {
               console.log(result.text);
@@ -85,7 +98,10 @@ export default function Footer() {
                         <h1 className=' text-white text-2xl mb-4'>Արագ կապ</h1>
                         <p className='fAllFonts text-white text-[16px] font-semibold mb-4'>Ուղարկեք ձեր էլ. հասցեն կամ <br /> հեռախոսահամարը</p>
                         <div className='fInputBlock flex rounded-lg overflow-hidden'>
-                            <input type="text" required={true}  name='user_email' onChange={(e) => setEmali(e.target.value)} className={email.length == 0 || emailCorrect ? ' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-black' 
+                            <input type="text" required={true}  name='user_email' onChange={(e) => {
+                                setEmali(e.target.value)
+                                setPhoneNumber(e.target.value)
+                            }} className={phoneCorrect || phoneNumber.length == 0 && email.length == 0 || emailCorrect ? ' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-black' 
                             : ' p-2 outline-none w-[280px] bg-[#232529] focus:bg-white duration-300  text-red-600' }/>
                             <input type="submit" value="Ուղարկել!" className=' text-white bg-[#232529] px-2 py-2 rounded-tr-lg rounded-br-lg cursor-pointer' />
                         </div>
