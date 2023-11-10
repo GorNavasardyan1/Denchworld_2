@@ -3,7 +3,7 @@ import { GetAllCategories, GetProductsByCategory } from '../../api'
 import { useNavigate, useParams } from 'react-router-dom'
 import Loading from '../../components/loading/Loading'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft, faAngleRight, faBars, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleLeft ,faAngleLeft, faAngleDoubleRight, faBars, faHome, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import './FindByCategory.css'
 import Basket from '../../components/basket/Basket'
 import { Context } from '../../App'
@@ -22,7 +22,7 @@ export default function FindByCategory() {
     const [menu,openMenu] = useState(false)
     const navigate = useNavigate()
     const {_id} = useParams()
-    const [skip, setSkip] = useState(0);
+    const [skip, setSkip] = useState(1);
     const {add,showBasket} = useContext(Context)
     const [changePageStart,setChangePageStart] = useState(false)
     const [changePageEnd,setChangePageEnd] = useState(true)
@@ -30,14 +30,14 @@ export default function FindByCategory() {
 
     // const {isDarkMode} = useContext(DarkLight)
     useEffect(() => {
-        if(skip == 0) {
+        if(skip === 1) {
             setChangePageStart(false)
         } else {
             setChangePageStart(true)
         }
     },[skip])
     useEffect(() => {
-        if(skip == 1) {
+        if(skip === products.totalPages) {
             setChangePageEnd(false)
         } else {
             setChangePageEnd(true)
@@ -134,12 +134,22 @@ export default function FindByCategory() {
                 </div>
                 {products.products.length > 0 ?
                 <div className=' flex mt-20 mb-10 justify-center w-full text-black '>
-                    {changePageStart ? <button onClick={()=>setSkip(0)} className=' rounded-full bg-slate-200 h-[40px] w-[40px] '><FontAwesomeIcon icon={faAngleLeft}/></button>
-                     : <button title='Առաջին էջ' className=' cursor-default rounded-full opacity-60 bg-slate-200 h-[40px] w-[40px] '><FontAwesomeIcon icon={faAngleLeft}/></button>}
-                    <button onClick={()=>setSkip(0<skip-1?skip-1:skip)} className=' rounded-full bg-slate-200 h-[40px] w-[40px] ml-2 mr-2'>{0<skip-1?skip-1:skip}</button>
-                    <button onClick={()=>setSkip((products?.totalPages)>skip+1?skip+1:skip)} className=' rounded-full bg-slate-200 h-[40px] w-[40px]'>{(products?.totalPages)>skip+1?skip+1:skip}</button>
-                    {changePageEnd ? <button onClick={()=>setSkip(products?.totalPages -1)} className=' rounded-full bg-slate-200 h-[40px] w-[40px] ml-2'><FontAwesomeIcon icon={faAngleRight}/></button>
-                 : <button title='Վերջին էջ' className=' cursor-default rounded-full opacity-60 bg-slate-200 h-[40px] w-[40px] ml-2'><FontAwesomeIcon icon={faAngleRight}/></button>
+                    {changePageStart ? <button onClick={()=>setSkip(1)} className=' rounded-full bg-slate-200 h-[40px] w-[40px] '><FontAwesomeIcon icon={faAngleDoubleLeft}/></button>
+                     : <button title='Առաջին էջ' className=' cursor-default rounded-full opacity-60 bg-slate-200 h-[40px] w-[40px] '><FontAwesomeIcon icon={faAngleDoubleLeft}/></button>}
+                    {changePageStart ? <button onClick={()=>setSkip(1<=skip-1?skip-1:skip)} className=' rounded-full bg-slate-200 h-[40px] w-[40px] ml-2 mr-2'>
+                        <FontAwesomeIcon icon={faAngleLeft}/>
+                    </button> : <button className=' cursor-default opacity-60 rounded-full bg-slate-200 h-[40px] w-[40px] ml-2 mr-2'>
+                        <FontAwesomeIcon icon={faAngleLeft}/>
+                    </button>} {/* {products?.currentPage-1>=1?products?.currentPage-1:1} */}
+                    <button className='cursor-default rounded-full bg-slate-200 h-[40px] w-[40px] mr-2'>{products?.currentPage}</button>
+                    {changePageEnd ? <button onClick={()=>setSkip(products?.totalPages>=skip+1?skip+1:skip)} className=' rounded-full bg-slate-200 h-[40px] w-[40px]'>
+                        <FontAwesomeIcon icon={faAngleRight}/>
+                    </button> : <button className=' opacity-60 cursor-default rounded-full bg-slate-200 h-[40px] w-[40px]'>
+                        <FontAwesomeIcon icon={faAngleRight}/>
+                    </button>}
+                     {/* {products?.currentPage-1<=products?.totalPages?products?.currentPage+1:products?.currentPage} */}
+                    {changePageEnd ? <button onClick={()=>setSkip(products?.totalPages)} className=' rounded-full bg-slate-200 h-[40px] w-[40px] ml-2'><FontAwesomeIcon icon={faAngleDoubleRight}/></button>
+                 : <button title='Վերջին էջ' className=' cursor-default rounded-full opacity-60 bg-slate-200 h-[40px] w-[40px] ml-2'><FontAwesomeIcon icon={faAngleDoubleRight}/></button>
                 }
                     </div> : <p className='m-8 text-2xl font-semibold'>Ոչ մի ապրանք</p>}
                 <div className={products.products.length == 0 && ' flex items-end h-[100vh]'}>
