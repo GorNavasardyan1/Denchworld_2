@@ -68,7 +68,7 @@ export default function FindByCategory() {
         {showBasket && <Basket/>}
         <div className='flex  '>
             <div className={menu && !isDarkMode ? 'active w-[260px] bg-white fixed h-[100vh] flex items-center flex-col ' 
-            : menu && isDarkMode ? 'active w-[260px] bg-black fixed h-[100vh] flex items-center flex-col ' : 'leftBlok w-[260px] fixed h-[100vh] flex items-center flex-col'}>
+            : menu && isDarkMode ? 'active w-[260px] bg-[#232529] fixed h-[100vh] flex items-center flex-col ' : 'leftBlok w-[260px] fixed h-[100vh] flex items-center flex-col'}>
                 <div className=' mt-2'>
                     <button onClick={() => navigate('/')} ><FontAwesomeIcon icon={faHome}/> Home</button>
                     <button onClick={() => navigate(-1)}><FontAwesomeIcon icon={faAngleLeft} fade className='ml-1 mr-1'/>Back</button>
